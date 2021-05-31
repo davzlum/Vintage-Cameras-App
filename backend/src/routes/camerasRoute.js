@@ -11,6 +11,7 @@ function camerasRoute() {
 
   routes
     .route('/:cameraId')
+    .get(camerasController.getById)
     .put(camerasController.updateById)
     .delete(camerasController.deleteById);
 

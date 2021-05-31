@@ -13,6 +13,19 @@ function camerasController() {
     }
   }
 
+  async function getById(req, res) {
+    try {
+      const cameraById = await Camera.findById(
+        req.params.cameraId,
+      );
+      res.json(cameraById);
+    } catch (error) {
+      debug(error);
+      res.status(404);
+      res.send(error);
+    }
+  }
+
   async function createOne(req, res) {
     const newCamera = new Camera(req.body);
     debug(newCamera);
@@ -55,6 +68,7 @@ function camerasController() {
 
   return {
     getAllCameras,
+    getById,
     createOne,
     deleteById,
     updateById,
