@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const cameraSchema = mongoose.Schema({
-  model: String,
+  cameraModel: String,
   year: String,
   arsenalFactory: String,
   specifications: {

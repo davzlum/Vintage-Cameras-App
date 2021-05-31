@@ -33,9 +33,9 @@ function camerasController() {
       await newCamera.save();
       res.json(newCamera);
     } catch (error) {
+      res.status(404);
       debug(error);
       res.send(error);
-      res.status(404);
     }
   }
 

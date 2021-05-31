@@ -3,6 +3,8 @@ const chalk = require('chalk');
 const debug = require('debug')('app');
 const cors = require('cors');
 const morgan = require('morgan');
+const camerasRoute = require('./routes/camerasRoute');
+const usersRoute = require('./routes/usersRoute');
 
 require('dotenv').config();
 
@@ -14,11 +16,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 require('./ddbb/mongoose.config');
 
-const camerasRoute = require('./routes/camerasRoute');
-
 app.use('/cameras', camerasRoute);
-
-const usersRoute = require('./routes/usersRoute');
 
 app.use('/users', usersRoute);
 
