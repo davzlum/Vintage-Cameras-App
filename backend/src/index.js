@@ -1,4 +1,5 @@
 const express = require('express');
+const chalk = require('chalk');
 const debug = require('debug')('app');
 
 require('dotenv').config();
@@ -6,4 +7,6 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.listen(port, debug(`server is running on port ${port}`));
+require('./ddbb/mongoose.config');
+
+app.listen(port, debug(`Server is running in ${chalk.bgCyan(port)}`));
