@@ -13,4 +13,8 @@ const camerasRoute = require('./routes/camerasRoute');
 
 app.use('/cameras', camerasRoute);
 
+const usersRoute = require('./routes/usersRoute');
+
+app.use('/users', usersRoute);
+
 app.listen(port, debug(`Server is running in ${chalk.bgCyan(port)}`));
