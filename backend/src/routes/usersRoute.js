@@ -11,6 +11,7 @@ function usersRoute() {
 
   routes
     .route('/:userId')
+    .get(usersController.getById)
     .put(usersController.updateById)
     .delete(usersController.deleteById);
 

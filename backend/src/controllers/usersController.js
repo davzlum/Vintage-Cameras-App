@@ -13,6 +13,19 @@ function usersController() {
     }
   }
 
+  async function getById(req, res) {
+    try {
+      const userById = await User.findById(
+        req.params.userId,
+      );
+      res.json(userById);
+    } catch (error) {
+      debug(error);
+      res.status(404);
+      res.send(error);
+    }
+  }
+
   async function createOne(req, res) {
     const newUser = new User(req.body);
     debug(newUser);
@@ -55,6 +68,7 @@ function usersController() {
 
   return {
     getAllUsers,
+    getById,
     createOne,
     deleteById,
     updateById,
