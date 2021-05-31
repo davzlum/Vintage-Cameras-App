@@ -13,4 +13,8 @@ const userSchema = mongoose.Schema({
 
 });
 
+userSchema.methods.isValidPassword = function isValidPassword(password) {
+  return password === this.password;
+};
+
 module.exports = mongoose.model('User', userSchema);

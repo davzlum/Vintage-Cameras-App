@@ -5,8 +5,13 @@ const cors = require('cors');
 const morgan = require('morgan');
 const camerasRoute = require('./routes/camerasRoute');
 const usersRoute = require('./routes/usersRoute');
+const passport = require('passport');
+const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes');
 
 require('dotenv').config();
+require('./passport/passport.config');
+
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -20,5 +25,14 @@ app.use('/cameras', camerasRoute);
 
 app.use('/users', usersRoute);
 
+app.use(express.urlencoded({ extended: false }));
+
+app.use('/', authRoutes);
+app.use(
+  '/user',
+  passport.authenticate('jwt', { session: false }),
+  userRoutes,
+);
+
 app.listen(port,
-  () => debug(`Server is running in ${chalk.magentaBright(`localhost:${port}`)}`));
+() => debug(`Server is running in ${chalk.magentaBright(`localhost:${port}`)}`));
