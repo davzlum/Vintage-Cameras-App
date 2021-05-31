@@ -22,6 +22,16 @@ describe('getAllCameras', () => {
     // assert
     expect(res.json).toHaveBeenCalledWith({ model: 'Hola' });
   });
+  test('should get a error 404', async () => {
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+      send: jest.fn(),
+    };
+    Camera.find.mockRejectedValueOnce(404);
+    await getAllCameras(null, res);
+    expect(res.status).toHaveBeenCalledWith(404);
+  });
 });
 
 describe('getById', () => {

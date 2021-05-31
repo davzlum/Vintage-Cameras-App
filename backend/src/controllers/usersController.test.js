@@ -22,6 +22,16 @@ describe('getAllUsers', () => {
     // assert
     expect(res.json).toHaveBeenCalledWith({ name: 'Hola' });
   });
+  test('should get a error 404', async () => {
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+      send: jest.fn(),
+    };
+    User.find.mockRejectedValueOnce(404);
+    await getAllUsers(null, res);
+    expect(res.status).toHaveBeenCalledWith(404);
+  });
 });
 
 describe('getById', () => {
