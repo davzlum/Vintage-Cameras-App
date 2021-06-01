@@ -20,19 +20,22 @@ app.use(express.json());
 app.use(morgan('dev'));
 require('./ddbb/mongoose.config');
 
-app.use('/products', productsRoute);
-
-app.use('/user', usersRoute);
 
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', authRoutes);
+
 app.use(
   '/user',
   passport.authenticate('jwt', { session: false }),
   usersRoute,
-  productsRoute
-);
+  );
+  
+app.use(
+    '/products', 
+    passport.authenticate('jwt', { session: false }),
+    productsRoute
+  );
 
 app.listen(port,
 () => debug(`Server is running in ${chalk.magentaBright(`localhost:${port}`)}`));
