@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { loadProducts } from '../../../redux/actions/actionCreators';
 
+import('./index.css');
+
 function CamerasList({ products, dispatch }) {
   useEffect(() => {
     if (!products.length) dispatch(loadProducts('cameras'));
@@ -11,8 +13,13 @@ function CamerasList({ products, dispatch }) {
   return (
     <>
       <h2>Cameras</h2>
-      <ul>
-        {products.map((product) => <li>{product.cameraModel}</li>)}
+      <ul className="cameras">
+        {products.map((product) => (
+          <li className="cameras__item">
+            <p>{product.cameraModel}</p>
+            <img src={product.images[0]} alt={product.cameraModel} />
+          </li>
+        ))}
       </ul>
     </>
   );

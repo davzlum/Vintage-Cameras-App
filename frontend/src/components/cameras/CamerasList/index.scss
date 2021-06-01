@@ -1,0 +1,13 @@
+.cameras {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
+    padding: 0;
+    &__item{
+        img{
+            width: 150px;
+        }
+    }
+}
