@@ -7,7 +7,6 @@ const productsRoute = require('./routes/productsRoute');
 const usersRoute = require('./routes/usersRoute');
 const passport = require('passport');
 const authRoutes = require('./routes/auth.routes');
-const userRoutes = require('./routes/user.routes');
 
 require('dotenv').config();
 require('./passport/passport.config');
@@ -31,7 +30,7 @@ app.use('/', authRoutes);
 app.use(
   '/user',
   passport.authenticate('jwt', { session: false }),
-  userRoutes,
+  usersRoute,
 );
 
 app.listen(port,

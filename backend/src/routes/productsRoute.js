@@ -27,6 +27,17 @@ function productsRoute() {
     .put(lensesController.updateById)
     .delete(lensesController.deleteById);
 
+  routes
+    .route('/films')
+    .get(lensesController.getAllLenses)
+    .post(lensesController.createOne);
+
+  routes
+    .route('/films/:filmId')
+    .get(lensesController.getById)
+    .put(lensesController.updateById)
+    .delete(lensesController.deleteById);
+
   return routes;
 }
 

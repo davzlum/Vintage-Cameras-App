@@ -99,4 +99,15 @@ authRoutes.post('/logout', (req, res) => {
   res.send('Logout successful');
 });
 
+authRoutes.get(
+  '/profile',
+  (req, res) => {
+    res.json({
+      message: 'You made it to the secure route',
+      user: req.user,
+      token: req.headers.authorization,
+    });
+  },
+);
+
 module.exports = authRoutes;

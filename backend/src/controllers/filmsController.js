@@ -1,11 +1,11 @@
-const debug = require('debug')('app:usersController');
-const User = require('../model/userModel');
+const debug = require('debug')('app:filmsController');
+const Film = require('../model/filmModel');
 
-function usersController() {
-  async function getAllUsers(req, res) {
+function filmsController() {
+  async function getAllFilms(req, res) {
     try {
-      const users = await User.find();
-      res.json(users);
+      const films = await Film.find();
+      res.json(films);
     } catch (error) {
       debug(error);
       res.send(error);
@@ -15,10 +15,10 @@ function usersController() {
 
   async function getById(req, res) {
     try {
-      const userById = await User.findById(
-        req.params.userId,
+      const filmById = await Film.findById(
+        req.params.filmId,
       );
-      res.json(userById);
+      res.json(filmById);
     } catch (error) {
       debug(error);
       res.status(404);
@@ -27,21 +27,21 @@ function usersController() {
   }
 
   async function createOne(req, res) {
-    const newUser = new User(req.body);
-    debug(newUser);
+    const newFilm = new Film(req.body);
+    debug(newFilm);
     try {
-      await newUser.save();
-      res.json(newUser);
+      await newFilm.save();
+      res.json(newFilm);
     } catch (error) {
+      res.status(404);
       debug(error);
       res.send(error);
-      res.status(404);
     }
   }
 
   async function deleteById(req, res) {
     try {
-      await User.findByIdAndDelete(req.params.userId);
+      await Film.findByIdAndDelete(req.params.filmId);
       res.status(204);
       res.json();
     } catch (error) {
@@ -53,12 +53,12 @@ function usersController() {
 
   async function updateById(req, res) {
     try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.params.userId,
+      const updatedFilm = await Film.findByIdAndUpdate(
+        req.params.filmId,
         req.body,
         { new: true },
       );
-      res.json(updatedUser);
+      res.json(updatedFilm);
     } catch (error) {
       debug(error);
       res.send(error);
@@ -67,7 +67,7 @@ function usersController() {
   }
 
   return {
-    getAllUsers,
+    getAllFilms,
     getById,
     createOne,
     deleteById,
@@ -75,4 +75,4 @@ function usersController() {
   };
 }
 
-module.exports = usersController;
+module.exports = filmsController;
