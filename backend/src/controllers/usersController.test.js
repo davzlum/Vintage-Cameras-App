@@ -16,11 +16,11 @@ describe('getAllUsers', () => {
     const res = {
       json: jest.fn(),
     };
-    User.find.mockResolvedValueOnce({ name: 'Hola' });
+    User.find.mockResolvedValueOnce({ password: 'Hola' });
     // act
     await getAllUsers(null, res);
     // assert
-    expect(res.json).toHaveBeenCalledWith({ name: 'Hola' });
+    expect(res.json).toHaveBeenCalledWith({ password: 'Hola' });
   });
   test('should get a error 404', async () => {
     const res = {
