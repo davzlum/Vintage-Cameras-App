@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const camerasController = require('../controllers/camerasController')();
 const lensesController = require('../controllers/lensesController')();
+const filmsController = require('../controllers/filmsController')();
 
 function productsRoute() {
   const routes = Router();
@@ -29,14 +30,14 @@ function productsRoute() {
 
   routes
     .route('/films')
-    .get(lensesController.getAllLenses)
-    .post(lensesController.createOne);
+    .get(filmsController.getAllFilms)
+    .post(filmsController.createOne);
 
   routes
     .route('/films/:filmId')
-    .get(lensesController.getById)
-    .put(lensesController.updateById)
-    .delete(lensesController.deleteById);
+    .get(filmsController.getById)
+    .put(filmsController.updateById)
+    .delete(filmsController.deleteById);
 
   return routes;
 }
