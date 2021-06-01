@@ -49,3 +49,13 @@ export function updateProduct(product, section) {
     });
   };
 }
+
+export function loadProduct(product, section) {
+  return async (dispatch) => {
+    const { data } = await axios(`${url}/${section}/${product._id}`);
+    dispatch({
+      type: actionTypes.LOAD_PRODUCT,
+      product: data,
+    });
+  };
+}
