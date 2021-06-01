@@ -16,6 +16,7 @@ const cameraSchema = mongoose.Schema({
   history: String,
   price: Number,
   images: [String],
+  favState: Boolean,
 });
 
 module.exports = mongoose.model('Camera', cameraSchema);

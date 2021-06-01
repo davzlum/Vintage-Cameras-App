@@ -14,6 +14,7 @@ const lensSchema = mongoose.Schema({
   history: String,
   price: Number,
   images: [String],
+  favState: Boolean,
 });
 
 module.exports = mongoose.model('Lens', lensSchema);
