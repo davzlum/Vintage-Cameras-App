@@ -22,7 +22,7 @@ require('./ddbb/mongoose.config');
 
 app.use('/products', productsRoute);
 
-app.use('/users', usersRoute);
+app.use('/user', usersRoute);
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -31,6 +31,7 @@ app.use(
   '/user',
   passport.authenticate('jwt', { session: false }),
   usersRoute,
+  productsRoute
 );
 
 app.listen(port,
