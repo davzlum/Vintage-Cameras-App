@@ -2,12 +2,12 @@
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
-const url = process.env.URL;
+const url = process.env.REACT_APP_URL;
 
 export function loadProducts(section) {
   return async (dispatch) => {
     try {
-      const { data } = await axios(`${url}/${section}`);
+      const { data } = await axios(`${url}/${section}`, { headers: { Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjIyNTY1Nzk3LCJleHAiOjE2MjI1Njc1OTd9.0YOc49meCbUYxENP-S7Sgwpj5EVbj9jc18WC5moLim0'}` } });
       dispatch({
         type: actionTypes.LOAD_PRODUCTS,
         products: data,
