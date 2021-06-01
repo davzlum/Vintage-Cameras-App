@@ -19,12 +19,22 @@ export function loadProducts(section) {
   };
 }
 
-export function addHero(hero) {
+export function addProduct(product, section) {
   return async (dispatch) => {
-    const { data } = await axios.post(url, hero);
+    const { data } = await axios.post(`${url}/${section}`, product);
     dispatch({
-      type: actionTypes.ADD_HERO,
-      hero: data,
+      type: actionTypes.ADD_PRODUCT,
+      product: data,
+    });
+  };
+}
+
+export function deleteProduct(productId, section) {
+  return async (dispatch) => {
+    await axios.delete(`${url}/${section}/${productId}`);
+    dispatch({
+      type: actionTypes.DELETE_PRODUCT,
+      productId,
     });
   };
 }
