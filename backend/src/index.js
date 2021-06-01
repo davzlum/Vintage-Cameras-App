@@ -3,8 +3,7 @@ const chalk = require('chalk');
 const debug = require('debug')('app');
 const cors = require('cors');
 const morgan = require('morgan');
-const camerasRoute = require('./routes/camerasRoute');
-const lensesRoute = require('./routes/lensesRoute');
+const productsRoute = require('./routes/productsRoute');
 const usersRoute = require('./routes/usersRoute');
 const passport = require('passport');
 const authRoutes = require('./routes/auth.routes');
@@ -22,9 +21,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 require('./ddbb/mongoose.config');
 
-app.use('/cameras', camerasRoute);
-
-app.use('/lenses', lensesRoute);
+app.use('/products', productsRoute);
 
 app.use('/users', usersRoute);
 
