@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
@@ -35,6 +36,16 @@ export function deleteProduct(productId, section) {
     dispatch({
       type: actionTypes.DELETE_PRODUCT,
       productId,
+    });
+  };
+}
+
+export function updateProduct(product, section) {
+  return async (dispatch) => {
+    const { data } = await axios.put(`${url}/${section}/${product._id}`, product);
+    dispatch({
+      type: actionTypes.UPDATE_PRODUCT,
+      product: data,
     });
   };
 }
