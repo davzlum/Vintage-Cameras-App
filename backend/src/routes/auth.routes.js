@@ -83,7 +83,7 @@ authRoutes.post('/token', (req, res) => {
     const accessToken = jwt.sign(
       { user: data },
       process.env.JWT_SECRET,
-      { expiresIn: '30m' },
+      { expiresIn: '120m' },
     );
 
     return res.json({
