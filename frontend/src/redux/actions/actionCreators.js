@@ -7,7 +7,7 @@ const url = process.env.REACT_APP_URL;
 export function loadProducts(section) {
   return async (dispatch) => {
     try {
-      const { data } = await axios(`${url}/${section}`, { headers: { Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjIyNTY4MDExLCJleHAiOjE2MjI1NzUyMTF9.diEoIEq-tsNnLliUGuDOda7CETTrhnjusSE2xswUU2U'}` } });
+      const { data } = await axios(`${url}/${section}`, { headers: { Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjIyNjQ0MjUwfQ.x4_E-fZiLhOVbG7EFRwqJwDrUigQMnuRvQRS6TqXTXA'}` } });
       dispatch({
         type: actionTypes.LOAD_PRODUCTS,
         products: data,

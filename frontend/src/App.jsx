@@ -1,6 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-// import CamerasList from './components/cameras/CamerasList';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import CamerasList from './components/cameras/CamerasList';
 import Header from './components/common/Header';
 import Dashboard from './components/Dashboard';
 import configureStore from './redux/store';
@@ -9,9 +15,17 @@ import './App.css';
 function App() {
   return (
     <Provider store={configureStore()}>
-      <Header />
-      <Dashboard />
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/products" component={Dashboard} />
+          <Route exact path="/products/cameras" component={CamerasList} />
+          <Route exact path="/products/cameras/:cameraId" component={Dashboard} />
+          <Redirect to="./" />
+        </Switch>
+      </Router>
     </Provider>
+
   );
 }
 
