@@ -1,11 +1,10 @@
+@import './../../../style/color';
+@import './../../../style/mixin';
+
 .header-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-content(flex, row, space-between, center);
     height: 80px;
     padding: 0;
-    list-style: none;
     margin: 10px 30px;
     &__nav {
         width: 75px;
@@ -14,24 +13,21 @@
             width: 30px;
         }
         .sections-list {
+            @include flex-content(flex, column, null, center);
             visibility: hidden;
             padding: 0;
             position: absolute;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            list-style: none;
             width: 414px;
             left:-30px;
-            background-color: #529284;
+            background-color: $color-corporative;
             top:60px;
-            color: white;
+            color: $color-white;
             text-transform: uppercase;
             .section-item{
                 text-align: center;
                 width: 100%;
                 padding: 20px 0;
-                border-bottom: 1px solid white;
+                border-bottom: 1px solid $color-white;
             }
         }
     }
@@ -46,10 +42,8 @@
         }
     }
     &__right{
+        @include flex-content(flex, null, space-between, center);
         width: 75px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         .header-cart{
             position: relative;
             img{
@@ -60,7 +54,7 @@
             content: ' ';
             width: 25px;
             height: 25px;
-            background-color: #529284;
+            background-color: $color-corporative;
             border-radius: 50%;
             position: absolute;
             left: 20px;
