@@ -1,3 +1,5 @@
+@import './../../../style/color';
+
 .img-container{
     height: 250px;
     img{
@@ -7,4 +9,36 @@
 
 .slick-dots li button:before {
     font-size: 10px;
+}
+
+.slick-slider{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.camera-detail{
+    border-top: 2px solid $color-corporative;
+    margin: 0 10px;
+    position: relative;
+    .model-price{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .arsenal-year{
+        font-style: italic;
+    }
+    .history-container{
+        position: absolute;
+    }
+    .specifications-title{
+        float: right;
+    }
+    .specifications-title:hover > .specifications-info{
+        visibility: visible;
+        position:absolute;
+    }
+    .specifications-info{
+        visibility: hidden;
+    }
 }
