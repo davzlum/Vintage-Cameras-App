@@ -22,4 +22,12 @@ code {
 
 ul{
   list-style: none;
+  padding: 0;
+}
+
+h1{
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 25px;
+  margin-left: 30px;
 }
