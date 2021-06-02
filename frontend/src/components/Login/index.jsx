@@ -1,26 +1,33 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
+import './login.css';
 
 function Login() {
   return (
-    <>
-      <img src={logo} alt="logotipe" />
-      <form action="/login" method="POST">
-        <div className="form-floating">
-          <label htmlFor="email">
-            Email
-            <p><input className="form-control" type="text" placeholder="email" id="email" name="email" /></p>
-          </label>
-        </div>
-        <div className="form-floating">
-          <label htmlFor="password">
-            Password
-            <p><input className="form-control" type="password" placeholder="password" id="password" name="password" /></p>
-          </label>
-        </div>
-        <input className="w-100 btn btn-lg btn-primary" type="submit" name="login-button" id="login-button" value="login" />
-      </form>
-    </>
+    <div className="login">
+      <div className="login-information">
+        <img src={logo} alt="logotipe" />
+        <form action="/login" method="POST">
+          <div className="form-floating">
+            <label htmlFor="email">
+              <span>Email</span>
+              <input className="form-control" type="text" placeholder="email" id="email" name="email" />
+            </label>
+          </div>
+          <div className="form-floating">
+            <label htmlFor="password">
+              <span>Password</span>
+              <input className="form-control" type="password" placeholder="password" id="password" name="password" />
+            </label>
+          </div>
+          <div className="button">
+            <input className="button__item" type="submit" name="login-button" id="login-button" value="login" />
+            <input className="button__item button__item--black" type="submit" name="sign-button" id="sign-button" value="sign up" />
+          </div>
+
+        </form>
+      </div>
+    </div>
   );
 }
 
