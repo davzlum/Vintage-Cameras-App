@@ -1,5 +1,5 @@
 import React from 'react';
-import './header.css';
+import './header.scss';
 import logo from '../../../assets/logo.svg';
 import cart from '../../../assets/shopping-cart-solid.svg';
 import user from '../../../assets/user-solid.svg';

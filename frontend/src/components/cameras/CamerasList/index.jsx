@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { loadProducts } from '../../../redux/actions/actionCreators';
 
-import('./index.css');
+import('./index.scss');
 
 function CamerasList({ products, dispatch }) {
   useEffect(() => {
