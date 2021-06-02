@@ -50,9 +50,9 @@ export function updateProduct(product, section) {
   };
 }
 
-export function loadProduct(product, section) {
+export function loadProduct(productId, section) {
   return async (dispatch) => {
-    const { data } = await axios(`${url}/${section}/${product._id}`);
+    const { data } = await axios(`${url}/${section}/${productId}`, { headers: { Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjIyNjQ0MjUwfQ.x4_E-fZiLhOVbG7EFRwqJwDrUigQMnuRvQRS6TqXTXA'}` } });
     dispatch({
       type: actionTypes.LOAD_PRODUCT,
       product: data,

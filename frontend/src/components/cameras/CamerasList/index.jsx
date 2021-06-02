@@ -1,4 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { loadProducts } from '../../../redux/actions/actionCreators';
@@ -16,16 +18,18 @@ function CamerasList({ products, dispatch }) {
       <ul className="cameras">
         {products.map((product) => (
           <li className="cameras__item">
-            <div className="item-info">
-              <span>{product.cameraModel}</span>
-              <span>
-                {product.price}
-                €
-              </span>
-            </div>
-            <div className="item-image">
-              <img src={product.images[0]} alt={product.cameraModel} />
-            </div>
+            <Link to={`/cameras/${product._id}`}>
+              <div className="item-info">
+                <span>{product.cameraModel}</span>
+                <span>
+                  {product.price}
+                  €
+                </span>
+              </div>
+              <div className="item-image">
+                <img src={product.images[0]} alt={product.cameraModel} />
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

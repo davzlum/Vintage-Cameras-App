@@ -7,6 +7,7 @@ import {
   Route,
 } from 'react-router-dom';
 import CamerasList from './components/cameras/CamerasList';
+import CameraDetail from './components/cameras/CameraDetail';
 import Header from './components/common/Header';
 import Dashboard from './components/Dashboard';
 import configureStore from './redux/store';
@@ -20,7 +21,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/cameras" component={CamerasList} />
-          <Route exact path="/cameras/:cameraId" component={Dashboard} />
+          <Route exact path="/cameras/:cameraId" component={CameraDetail} />
           <Redirect to="/" />
         </Switch>
       </Router>
