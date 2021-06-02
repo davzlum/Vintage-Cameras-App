@@ -12,12 +12,20 @@ function CamerasList({ products, dispatch }) {
 
   return (
     <>
-      <h2>Cameras</h2>
+      <h1>Cameras</h1>
       <ul className="cameras">
         {products.map((product) => (
           <li className="cameras__item">
-            <p>{product.cameraModel}</p>
-            <img src={product.images[0]} alt={product.cameraModel} />
+            <div className="item-info">
+              <span>{product.cameraModel}</span>
+              <span>
+                {product.price}
+                €
+              </span>
+            </div>
+            <div className="item-image">
+              <img src={product.images[0]} alt={product.cameraModel} />
+            </div>
           </li>
         ))}
       </ul>

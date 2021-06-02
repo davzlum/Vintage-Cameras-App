@@ -1,5 +1,6 @@
 import React from 'react';
 import './dashboard.scss';
+import { Link } from 'react-router-dom';
 
 function Dashboard() {
   return (
@@ -7,8 +8,10 @@ function Dashboard() {
       <h1>Products</h1>
       <ul className="section-list">
         <li className="section-list__item">
-          <img src="https://i.ibb.co/zxxcLpC/border-from-cameras-film-pink-background-23-2147852453.jpg" alt="cameras" />
-          <span className="section-name">Cameras</span>
+          <Link to="/cameras">
+            <img src="https://i.ibb.co/zxxcLpC/border-from-cameras-film-pink-background-23-2147852453.jpg" alt="cameras" />
+            <span className="section-name">Cameras</span>
+          </Link>
         </li>
         <li className="section-list__item">
           <img src="https://i.ibb.co/QbJPDPR/Camera-lenses-background-m.webp" alt="lenses" />

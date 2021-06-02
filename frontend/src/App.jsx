@@ -18,10 +18,10 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/products" component={Dashboard} />
-          <Route exact path="/products/cameras" component={CamerasList} />
-          <Route exact path="/products/cameras/:cameraId" component={Dashboard} />
-          <Redirect to="./" />
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/cameras" component={CamerasList} />
+          <Route exact path="/cameras/:cameraId" component={Dashboard} />
+          <Redirect to="/" />
         </Switch>
       </Router>
     </Provider>

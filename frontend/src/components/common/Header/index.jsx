@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './header.scss';
 import logo from '../../../assets/logo.svg';
 import cart from '../../../assets/shopping-cart-solid.svg';
@@ -12,7 +13,8 @@ function Header() {
         <li className="header-container__nav">
           <img src={nav} alt="navigation" />
           <ul className="sections-list">
-            <li className="section-item">Cameras</li>
+            <li className="section-item"><Link to="/">Home</Link></li>
+            <li className="section-item"><Link to="/cameras">Cameras</Link></li>
             <li className="section-item">Lenses</li>
             <li className="section-item">Films</li>
           </ul>
