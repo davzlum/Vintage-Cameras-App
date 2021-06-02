@@ -39,6 +39,7 @@
       -ms-flex-align: center;
           align-items: center;
   visibility: hidden;
+  z-index: 4;
   padding: 0;
   position: absolute;
   width: 414px;

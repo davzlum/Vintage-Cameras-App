@@ -16,6 +16,7 @@
         .sections-list {
             @include flex-content(flex, column, null, center);
             visibility: hidden;
+            z-index: 4;
             padding: 0;
             position: absolute;
             width: 414px;

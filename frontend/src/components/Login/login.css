@@ -90,9 +90,11 @@
   content: ' ';
   z-index: 1;
   position: absolute;
-  background-color: #906B34;
+  background-color: #141414;
   opacity: 50%;
   width: 100vw;
   height: calc(100vh - 80px);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
 }
 /*# sourceMappingURL=login.css.map */
