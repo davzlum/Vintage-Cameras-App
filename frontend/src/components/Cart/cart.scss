@@ -1,0 +1,106 @@
+@import './../../style/color';
+
+.shopping-cart{
+    width: calc(100vw - 20px);
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid $color-corporative;
+    height: 80vh;
+    justify-content: space-between;
+    &__product-box{
+        height: 100%;
+        border-bottom: 2px solid $color-corporative;
+    }
+    &__total-cost{
+        text-align: center;
+        font-size: 25px;
+        text-transform: uppercase;
+        font-weight: 900;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px;
+    }
+    &__product-list{
+        list-style: none;
+        margin:0;
+    }
+    &__price{
+        font-size: 20px;
+        font-weight: 600;
+        display: inline-flex;
+        white-space: nowrap;
+        position: absolute;
+        right: 20px;
+    }
+    &__product{
+        padding: 5px 2px;
+        box-shadow: 1px 1px 3px black;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+        border-bottom: 1px solid $color-white;
+        font-size: 18px;
+        border-radius: 10px;
+        margin: 10px 0;
+        position: relative;
+        img{
+            height: 80px;
+            border: 1px solid $color-white;
+        }
+    }
+    &__left{
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        padding-right: 5px;
+        height: 100%;
+        .image-container{
+            width: 80px;
+            height: 100%;
+            margin: 5px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .information{
+            margin-left: 10px;
+        }
+        .title-model{
+            font-size: 20px;
+            font-weight: 500;
+            color: $color-dark;
+            cursor: pointer;
+        }
+    }
+}
+
+.button-remove{
+    background-image: url('./../../assets/times-solid.svg');
+    background-size: 15px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    border: none;
+    margin-left: 5px;
+    background-color: $color-white;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.button-buy{
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: $color-corporative;
+    color: $color-white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}

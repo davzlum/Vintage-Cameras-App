@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import './header.scss';
 import logo from '../../../assets/logo.svg';
 import cart from '../../../assets/shopping-cart-solid.svg';
 import user from '../../../assets/user-solid.svg';
 import nav from '../../../assets/bars-solid.svg';
+import { loadCart } from '../../../redux/actions/actionCreatorsCart';
 
-function Header() {
+function Header({ cartList, dispatch }) {
+  useEffect(() => {
+    dispatch(loadCart());
+  }, []);
   return (
     <header className="header">
       <ul className="header-container">
@@ -24,7 +30,17 @@ function Header() {
         </li>
         <li className="header-container__right">
           <span className="header-cart">
-            <img src={cart} alt="cart" />
+            <Link to="/cart">
+              <img src={cart} alt="cart" />
+              {cartList.length
+                ? (
+                  <>
+                    <span className="cart-number">{cartList.length}</span>
+                    <span className="cart-circle"> </span>
+                  </>
+                )
+                : <span />}
+            </Link>
           </span>
           <span className="header-user">
             <img src={user} alt="user" />
@@ -35,4 +51,13 @@ function Header() {
   );
 }
 
-export default Header;
+Header.propTypes = {
+  cartList: PropTypes.shape([]).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+
+function mapStateToProps({ cartList }) {
+  return { cartList };
+}
+
+export default connect(mapStateToProps)(Header);

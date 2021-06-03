@@ -2,9 +2,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   loadCart, deleteFromCart, updateCart,
 } from '../../redux/actions/actionCreatorsCart';
+import './cart.scss';
 
 function ShoppingCart({ cartList, dispatch }) {
   useEffect(() => {
@@ -15,7 +17,7 @@ function ShoppingCart({ cartList, dispatch }) {
     return total + cost;
   }
   function cartListTotalCost() {
-    const total = cartList.map((x) => x.price * x.quantity);
+    const total = cartList.map((x) => x.price * 1);
     return total.reduce(getTotalCost);
   }
   function buyCartList() {
@@ -27,45 +29,49 @@ function ShoppingCart({ cartList, dispatch }) {
   }
 
   return (
-    <div className="shopping-cart">
-      <div className="shopping-cart__product-box">
-        <div className="cart-title">
-          <h3>MI CESTA</h3>
-        </div>
-        <ul className="shopping-cart__product-list">
-          {cartList.length
-            ? cartList.map((product) => (
-              <li key={product._id} className="shopping-cart__product">
-                <div className="shopping-cart__left">
-                  <img src={product.image} alt={product.brand} />
+    <>
+      <h1>Cart</h1>
+      <div className="shopping-cart">
+        <div className="shopping-cart__product-box">
+          <ul className="shopping-cart__product-list">
+            {cartList.length
+              ? cartList.map((product) => (
+                <li key={product._id} className="shopping-cart__product">
+
+                  <div className="shopping-cart__left">
+                    <div className="image-container">
+                      <img src={product?.images[0]} alt={product.cameraModel} />
+                    </div>
+                    <span className="information">
+                      <Link to={`/${product.section}/:${product._id}`}>
+                        <p className="title-model">{product.cameraModel}</p>
+                      </Link>
+                      <p className="title-lens">{product.specifications.lens}</p>
+                    </span>
+                  </div>
                   <span>
-                    {product.quantity}
-                    {'x '}
-                    {product.productType}
-                    {': '}
+                    <p className="shopping-cart__price">
+                      {product.price}
+                      {' €  '}
+                    </p>
+                    <button type="button" className="button-remove" data-testid="button-remove" onClick={() => dispatch(deleteFromCart(product))}> </button>
                   </span>
-                </div>
-                <span className="shopping-cart__price">
-                  {product.price}
-                  {' €  '}
-                  <button type="button" className="button-remove" data-testid="button-remove" onClick={() => dispatch(deleteFromCart(product))}>--</button>
-                </span>
+                </li>
+              )) : <p>No products at cart</p>}
+          </ul>
+        </div>
+        <div className="shopping-cart__total-cost">
+          <span>
+            Total:
+            {'  '}
+            {cartList.length ? cartListTotalCost() : 0}
+            {' €  '}
+          </span>
+          <button type="button" data-testid="button-buy" className="button-buy" onClick={() => buyCartList()}>COMPRAR</button>
+        </div>
 
-              </li>
-            )) : <p>No products at cart</p>}
-        </ul>
       </div>
-      <div className="shopping-cart__total-cost">
-        <span>
-          Total:
-          {'  '}
-          {cartList.length ? cartListTotalCost() : 0}
-          {' €  '}
-        </span>
-        <button type="button" data-testid="button-buy" className="button-buy" onClick={() => buyCartList()}>COMPRAR</button>
-      </div>
-
-    </div>
+    </>
   );
 }
 
