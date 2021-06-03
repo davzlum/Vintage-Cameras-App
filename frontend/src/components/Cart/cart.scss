@@ -75,6 +75,9 @@
             color: $color-dark;
             cursor: pointer;
         }
+        .title-lens{
+            width: 250px;
+        }
     }
 }
 
@@ -93,14 +96,24 @@
     right: 5px;
 }
 
-.button-buy{
-    width: 100px;
-    height: 40px;
-    border: none;
-    background-color: $color-corporative;
-    color: $color-white;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
+.button-container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    button{
+        padding: 8px 20px;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        color: $color-white;
+        font-size: 20px;
+        border-radius: 30px;
+        font-weight: 400;
+        margin: 10px 5px;
+        width: 150px;
+        background-color: $color-corporative;
+    }
+    .continue{
+        background-color: $color-dark;
+    }
 }

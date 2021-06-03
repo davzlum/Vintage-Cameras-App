@@ -43,7 +43,7 @@ function ShoppingCart({ cartList, dispatch }) {
                       <img src={product?.images[0]} alt={product.cameraModel} />
                     </div>
                     <span className="information">
-                      <Link to={`/${product.section}/:${product._id}`}>
+                      <Link to={`/${product.section}/${product._id}`}>
                         <p className="title-model">{product.cameraModel}</p>
                       </Link>
                       <p className="title-lens">{product.specifications.lens}</p>
@@ -63,13 +63,17 @@ function ShoppingCart({ cartList, dispatch }) {
         <div className="shopping-cart__total-cost">
           <span>
             Total:
+          </span>
+          <span>
             {'  '}
             {cartList.length ? cartListTotalCost() : 0}
             {' €  '}
           </span>
-          <button type="button" data-testid="button-buy" className="button-buy" onClick={() => buyCartList()}>COMPRAR</button>
         </div>
-
+        <div className="button-container">
+          <Link to="/"><button type="button" data-testid="button-continue" className="continue">Continue</button></Link>
+          <button type="button" data-testid="button-buy" className="buy" onClick={() => buyCartList()}>Buy</button>
+        </div>
       </div>
     </>
   );
