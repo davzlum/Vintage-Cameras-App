@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { loadProduct } from '../../../redux/actions/actionCreators';
 import 'slick-carousel/slick/slick.css';
@@ -23,10 +24,10 @@ function CameraDetail({ selectedProduct, dispatch }) {
         <Slider dots>{renderSlides()}</Slider>
         <div className="model-price">
           <h2>{selectedProduct?.cameraModel}</h2>
-          <h3>
+          <h2>
             {selectedProduct?.price}
             €
-          </h3>
+          </h2>
         </div>
         <div className="arsenal-year">
           <span>
@@ -39,13 +40,11 @@ function CameraDetail({ selectedProduct, dispatch }) {
             )
           </span>
         </div>
-        <span className="history-container">
-          <span className="history">History</span>
-          <p>{selectedProduct?.history}</p>
-        </span>
-        <span className="specifications-container">
-          <span className="specifications-title">Specifications</span>
-          <span className="specifications-info">
+        <div className="information-container">
+          <div className="information-container__history-title">History</div>
+          <div className="information-container__history-info">{selectedProduct?.history}</div>
+          <div className="information-container__specs-title">Specifications</div>
+          <div className="information-container__specs-info">
             <p>
               Lens:
               {' '}
@@ -81,11 +80,13 @@ function CameraDetail({ selectedProduct, dispatch }) {
               {' '}
               {selectedProduct?.specifications?.film}
             </p>
-          </span>
-        </span>
-
+          </div>
+        </div>
       </div>
-
+      <div className="button-container">
+        <button type="button" className="button cart">Add to cart</button>
+        <button type="button" className="button info"><Link to="/cameras">Go back</Link></button>
+      </div>
     </div>
   );
 }

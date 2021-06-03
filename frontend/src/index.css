@@ -31,3 +31,9 @@ h1{
   font-size: 25px;
   margin-left: 30px;
 }
+
+a{
+  color: white;
+  text-decoration: none;
+  outline: none;
+}
