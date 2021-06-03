@@ -6,6 +6,7 @@ import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { loadProduct } from '../../../redux/actions/actionCreators';
+import { addToCart } from '../../../redux/actions/actionCreatorsCart';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './cameraDetail.scss';
@@ -84,7 +85,15 @@ function CameraDetail({ selectedProduct, dispatch }) {
         </div>
       </div>
       <div className="button-container">
-        <button type="button" className="button cart">Add to cart</button>
+        <button
+          type="button"
+          className="button cart"
+          onClick={() => { dispatch(addToCart(selectedProduct)); }}
+        >
+          <Link to="/cart">
+            Add to cart
+          </Link>
+        </button>
         <button type="button" className="button info"><Link to="/cameras">Go back</Link></button>
       </div>
     </div>

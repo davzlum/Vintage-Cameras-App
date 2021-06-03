@@ -10,6 +10,7 @@ import CamerasList from './components/cameras/CamerasList';
 import CameraDetail from './components/cameras/CameraDetail';
 import Header from './components/common/Header';
 import Dashboard from './components/Dashboard';
+import Cart from './components/Cart';
 import configureStore from './redux/store';
 import './App.css';
 
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/cameras" component={CamerasList} />
           <Route exact path="/cameras/:cameraId" component={CameraDetail} />
+          <Route exact path="/cart" component={Cart} />
           <Redirect to="/" />
         </Switch>
       </Router>
