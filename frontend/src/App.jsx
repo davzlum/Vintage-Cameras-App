@@ -20,9 +20,9 @@ function App() {
     <Provider store={configureStore()}>
       <Router>
         <Header />
-        <Login />
         <Switch>
           <Route exact path="/" component={Dashboard} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/cameras" component={CamerasList} />
           <Route exact path="/cameras/:cameraId" component={CameraDetail} />
           <Route exact path="/cart" component={Cart} />
