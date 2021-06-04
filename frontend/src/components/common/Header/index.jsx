@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import './header.scss';
 import logo from '../../../assets/logo.svg';
 import cart from '../../../assets/shopping-cart-solid.svg';
-import user from '../../../assets/user-solid.svg';
+import userlogo from '../../../assets/user-solid.svg';
 import nav from '../../../assets/bars-solid.svg';
 import { loadCart } from '../../../redux/actions/actionCreatorsCart';
 
-function Header({ cartList, dispatch }) {
+function Header({ cartList, dispatch, user }) {
+  const history = useHistory();
   useEffect(() => {
     dispatch(loadCart());
   }, []);
+
+  useEffect(() => {
+    if (!user.token) history.push('/login');
+  }, []);
+
   return (
     <header className="header">
       <ul className="header-container">
@@ -43,7 +49,7 @@ function Header({ cartList, dispatch }) {
             </Link>
           </span>
           <span className="header-user">
-            <img src={user} alt="user" />
+            <img src={userlogo} alt="user" />
           </span>
         </li>
       </ul>
@@ -54,10 +60,13 @@ function Header({ cartList, dispatch }) {
 Header.propTypes = {
   cartList: PropTypes.shape([]).isRequired,
   dispatch: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    token: PropTypes.string,
+  }).isRequired,
 };
 
-function mapStateToProps({ cartList }) {
-  return { cartList };
+function mapStateToProps({ cartList, user }) {
+  return { cartList, user };
 }
 
 export default connect(mapStateToProps)(Header);

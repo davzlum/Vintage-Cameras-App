@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import login from '../../redux/actions/actionCreatorsUser';
 import './login.scss';
@@ -19,14 +20,15 @@ function Login({ dispatch, user }) {
     event.preventDefault();
     dispatch(login(email, password));
   }
+  if (user.token) {
+    return <Redirect to="/" />;
+  }
 
-  // eslint-disable-next-line no-console
-  console.log(user);
   return (
     <div className="login">
       <div className="login-information">
         <img src={logo} alt="logotipe" />
-        <form action="/login" method="POST">
+        <form action="/cameras" method="POST">
           <div className="form-floating">
             <label htmlFor="email">
               <span>Email</span>
@@ -51,7 +53,9 @@ function Login({ dispatch, user }) {
 
 Login.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  user: PropTypes.shape({}).isRequired,
+  user: PropTypes.shape({
+    token: PropTypes.string,
+  }).isRequired,
 };
 
 function mapStateToProps({ user }) {
