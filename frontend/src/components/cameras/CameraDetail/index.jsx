@@ -96,8 +96,9 @@ function CameraDetail({
       <div className="button-container">
         <button
           type="button"
+          disabled={cartList.find((cartProduct) => selectedProduct._id === cartProduct._id)}
           className="button cart"
-          onClick={() => { dispatch(addToCart(selectedProduct, user, cartList)); }}
+          onClick={() => dispatch(addToCart(selectedProduct, user, cartList))}
         >
           <Link to="/cart">
             Add to cart
