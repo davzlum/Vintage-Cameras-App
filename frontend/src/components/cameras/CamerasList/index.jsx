@@ -23,6 +23,7 @@ function CamerasList({
       <ul className="cameras">
         {products.map((product) => (
           <li className="cameras__item">
+            <div className={product.sold && 'sold-label'} />
             <Link to={`/cameras/${product._id}`}>
               <div className="item-info">
                 <span>{product.cameraModel}</span>

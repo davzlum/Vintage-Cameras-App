@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
@@ -7,12 +8,15 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { loadProduct } from '../../../redux/actions/actionCreators';
 import { addToCart } from '../../../redux/actions/actionCreatorsCart';
+import favoriteEmpty from '../../../assets/heart-regular.svg';
+import favoriteSolid from '../../../assets/heart-solid.svg';
+import { addToFavorites, deleteFromFavorites } from '../../../redux/actions/actionCreatorsFavorites';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './cameraDetail.scss';
 
 function CameraDetail({
-  selectedProduct, dispatch, user, cartList,
+  selectedProduct, dispatch, user, cartList, favorites,
 }) {
   const { cameraId } = useParams();
   useEffect(() => {
@@ -25,6 +29,9 @@ function CameraDetail({
       <h1>Camera detail</h1>
       <div className="camera-detail">
         <Slider dots>{renderSlides()}</Slider>
+        <button type="button" className="favorite-button" onClick={() => dispatch(favorites.find((favorite) => selectedProduct._id === favorite._id) ? deleteFromFavorites(selectedProduct, user, favorites) : addToFavorites(selectedProduct, user, favorites))}>
+          <img src={favorites.find((favorite) => selectedProduct._id === favorite._id) ? favoriteSolid : favoriteEmpty} alt="favorite" />
+        </button>
         <div className="model-price">
           <h2>{selectedProduct?.cameraModel}</h2>
           <h2>
@@ -104,6 +111,7 @@ function CameraDetail({
 
 CameraDetail.propTypes = {
   selectedProduct: PropTypes.shape({
+    _id: PropTypes.string,
     cameraModel: PropTypes.string,
     images: PropTypes.shape([]).isRequired,
     history: PropTypes.string,
@@ -122,14 +130,18 @@ CameraDetail.propTypes = {
   }).isRequired,
   user: PropTypes.shape({}).isRequired,
   cartList: PropTypes.shape([]).isRequired,
+  favorites: PropTypes.shape([]).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ selectedProduct, user, cartList }) {
+function mapStateToProps({
+  selectedProduct, user, cartList, favorites,
+}) {
   return {
     selectedProduct,
     user,
     cartList,
+    favorites,
   };
 }
 
