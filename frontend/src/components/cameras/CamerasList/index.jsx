@@ -4,13 +4,18 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { loadProducts } from '../../../redux/actions/actionCreators';
+import favoriteEmpty from '../../../assets/heart-regular.svg';
+import favoriteSolid from '../../../assets/heart-solid.svg';
+import { addToFavorites, deleteFromFavorites } from '../../../redux/actions/actionCreatorsFavorites';
 
 import('./index.scss');
 
-function CamerasList({ products, dispatch, user }) {
+function CamerasList({
+  products, dispatch, user, favorites,
+}) {
   useEffect(() => {
     if (!products.length) dispatch(loadProducts('cameras', user));
-  }, []);
+  }, [favorites]);
 
   return (
     <>
@@ -30,6 +35,9 @@ function CamerasList({ products, dispatch, user }) {
                 <img src={product.images[0]} alt={product.cameraModel} />
               </div>
             </Link>
+            <button type="button" className="favorite-button" onClick={() => dispatch(favorites.find((favorite) => product._id === favorite._id) ? deleteFromFavorites(product, user, favorites) : addToFavorites(product, user, favorites))}>
+              <img src={favorites.find((favorite) => product._id === favorite._id) ? favoriteSolid : favoriteEmpty} alt="favorite" />
+            </button>
           </li>
         ))}
       </ul>
@@ -40,13 +48,19 @@ function CamerasList({ products, dispatch, user }) {
 CamerasList.propTypes = {
   products: PropTypes.shape([]).isRequired,
   dispatch: PropTypes.func.isRequired,
-  user: PropTypes.shape({}).isRequired,
+  user: PropTypes.shape({
+    user: PropTypes.shape({
+      favorites: PropTypes.shape([]),
+    }),
+  }).isRequired,
+  favorites: PropTypes.shape([]).isRequired,
 };
 
-function mapStateToProps({ products, user }) {
+function mapStateToProps({ products, user, favorites }) {
   return {
     products,
     user,
+    favorites,
   };
 }
 

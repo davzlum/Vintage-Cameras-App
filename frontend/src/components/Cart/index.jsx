@@ -21,7 +21,6 @@ function ShoppingCart({ cartList, dispatch, user }) {
       const updatedProduct = { ...product, stock: product.stock - product.quantity };
       dispatch(updateCart(updatedProduct));
     });
-    // dispatch(loadProducts());
   }
 
   return (

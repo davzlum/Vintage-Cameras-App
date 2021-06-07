@@ -11,8 +11,8 @@ function favoritesReducer(favorites = [], action) {
         },
       ];
 
-    case actionTypes.DELETE_CART_PRODUCT:
-      return [...favorites];
+    case actionTypes.DELETE_FAVORITE_PRODUCT:
+      return [...action.newFav];
 
     case actionTypes.LOGIN:
       return action.user.user.favorites;

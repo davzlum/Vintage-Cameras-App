@@ -15,12 +15,12 @@ export function addToFavorites(product, user, favorites) {
 }
 
 export function deleteFromFavorites(product, user, favorites) {
-  favorites.splice(favorites.indexOf(product), 1);
+  const newFav = favorites.filter((favoriteItem) => favoriteItem._id !== product._id);
   return async (dispatch) => {
-    await axios.put(`${url}/user/${user.user._id}`, { favorites }, { headers: { Authorization: `Bearer ${user.token}` } });
+    await axios.put(`${url}/user/${user.user._id}`, { favorites: newFav }, { headers: { Authorization: `Bearer ${user.token}` } });
     dispatch({
       type: actionTypes.DELETE_FAVORITE_PRODUCT,
-      product,
+      newFav,
     });
   };
 }

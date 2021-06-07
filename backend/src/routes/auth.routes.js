@@ -49,7 +49,7 @@ authRoutes.post(
 
               const userById = await User.findById(
                 user._id
-              ).populate('cart');
+              ).populate('cart').populate('favorites');
 
               refreshTokens.push(refreshToken);
 
