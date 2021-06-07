@@ -1,6 +1,7 @@
 const passport = require('passport');
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
+const User = require('./../model/userModel');
 
 let refreshTokens = [];
 const authRoutes = Router();
@@ -39,18 +40,23 @@ authRoutes.post(
               const token = jwt.sign(
                 { user: data },
                 process.env.JWT_SECRET,
-                { expiresIn: '1m' },
+                // { expiresIn: '1m' },
               );
               const refreshToken = jwt.sign(
                 { user: data },
                 process.env.JWT_SECRET,
               );
 
+              const userById = await User.findById(
+                user._id
+              ).populate('cart').populate('favorites');
+
               refreshTokens.push(refreshToken);
 
               return res.json({
                 token,
                 refreshToken,
+                user: userById
               });
             },
           );
@@ -83,7 +89,7 @@ authRoutes.post('/token', (req, res) => {
     const accessToken = jwt.sign(
       { user: data },
       process.env.JWT_SECRET,
-      { expiresIn: '30m' },
+      // { expiresIn: '240m' },
     );
 
     return res.json({

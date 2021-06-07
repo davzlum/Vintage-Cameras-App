@@ -1,0 +1,39 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*{
+  font-family: 'Oswald', sans-serif;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+}
+
+h1{
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 25px;
+  margin-left: 30px;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+  outline: none;
+}

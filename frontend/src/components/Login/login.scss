@@ -1,0 +1,66 @@
+@import './../../style/color';
+@import './../../style/mixin';
+
+.login{
+    @include flex-content(flex, column, center, center);
+    background-image: url('https://i.ibb.co/PGWZMtw/vintage-cameras-arrangement-free-photo.jpg');
+    background-repeat: no-repeat;
+    background-size: 250%;
+    height: calc(100vh - 80px);
+    position: relative;
+    overflow: hidden;
+    .login-information{
+        z-index: 2;
+    }
+    form{
+        @include flex-content(flex, column, null, center);
+        margin-top: 20px;
+        .form-floating{
+            label{
+                @include flex-content(flex, column, null, center);
+            }
+            margin:10px 0;      
+            color: $color-white;
+            font-size: 20px;
+            text-transform: uppercase;
+            font-weight:400;
+            .form-control{
+                padding: 15px 20px;
+                border-radius: 30px;
+                width: 200px;
+                border: none;
+                outline: none;
+                margin: 5px 0;
+            }
+        }
+        .button{
+            &__item{
+                padding: 8px 20px;
+                border: none;
+                outline: none;
+                text-transform: uppercase;
+                color: $color-white;
+                font-size: 20px;
+                border-radius: 30px;
+                font-weight: 400;
+                margin: 10px 5px;
+                width: 120px;
+                background-color: $color-corporative;
+                &--black{
+                    background-color: $color-dark;
+                }
+            }
+        }
+    }
+}
+
+.login::after{
+    content: ' ';
+    z-index: 1;
+    position: absolute;
+    background-color: $color-dark;
+    opacity: 50%;
+    width: 100vw;
+    height: calc(100vh - 80px);
+    backdrop-filter: blur(2px);
+}

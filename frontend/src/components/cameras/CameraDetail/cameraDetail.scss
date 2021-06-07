@@ -1,0 +1,151 @@
+@import './../../../style/color';
+
+.img-container{
+    height: 250px;
+    img{
+        width: 100vw;
+    }
+}
+
+.slick-dots li button:before {
+    font-size: 10px;
+}
+
+.slick-slider{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.camera-detail{
+    border-top: 2px solid $color-corporative;
+    margin: 0 10px;
+    position: relative;
+    .model-price{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .arsenal-year{
+        font-style: italic;
+    }
+    .information-title-container{
+        display: flex;
+        justify-content: space-around;
+        cursor: pointer;
+    }
+}
+
+.information-container{
+    position: relative;
+    .history-info{
+        display: block;
+        height: 200px;
+        position: absolute;
+        
+    }
+    .specifications-info {
+        display: none;
+        position: absolute;
+        z-index: 2;
+    }
+}
+.history-title:hover {
+    background-color: red;
+}
+.specifications-title:hover .specifications-info {
+    display: block;
+}
+
+.information-container{
+    position: relative;
+    width: calc(100vw - 20px);
+    height: 300px;
+    margin-top: 10px;
+    &__history-info{
+        position: absolute;
+        display: block;
+        top:30px;
+        background-color: white;
+        margin-top: 10px;
+    }
+    &__specs-info{
+        position: absolute;
+        display: none;
+        top:30px;
+        z-index:2;
+        background-color: white;
+        width: 100%;
+        height: 90%;
+        margin-top: 10px;
+    }
+    &__specs-title{
+        font-size: 18px;
+        font-weight: 600;
+        width: 50%;
+        right: 0;
+        position: absolute;
+        cursor: pointer;
+        text-align: center;
+    }
+    &__history-title{
+        font-weight: 600;
+        font-size: 18px;
+        width: 50%;
+        position: absolute;
+        cursor: pointer;
+        text-align: center;
+        color: $color-corporative;
+        border-bottom: 2px solid $color-corporative;
+    }
+    &__specs-title:hover{
+        color: $color-corporative;
+        border-bottom: 2px solid $color-corporative;
+    }
+    &__specs-title:hover ~ &__history-title{
+        color: $color-dark !important;
+        border-bottom: none;
+    }
+    &__history-title:hover ~ &__specs-info{
+        display: none;
+        
+    }
+    &__specs-title:hover ~ &__specs-info{
+        display: block;
+    }
+}
+
+.button-container{
+display: flex;
+justify-content: center;
+margin-bottom: 30px;
+    button{
+        padding: 8px 20px;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        color: $color-white;
+        font-size: 20px;
+        border-radius: 30px;
+        font-weight: 400;
+        margin: 10px 5px;
+        width: 150px;
+        background-color: $color-corporative;
+    }
+    .info{
+        background-color: $color-dark;
+    }
+}
+
+.favorite-button{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    img{
+        width: 30px;
+    }
+}
