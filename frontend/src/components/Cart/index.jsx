@@ -1,18 +1,14 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  loadCart, deleteFromCart, updateCart,
+  deleteFromCart, updateCart,
 } from '../../redux/actions/actionCreatorsCart';
 import './cart.scss';
 
 function ShoppingCart({ cartList, dispatch, user }) {
-  useEffect(() => {
-    dispatch(loadCart());
-  }, []);
-
   function getTotalCost(total, cost) {
     return total + cost;
   }
