@@ -4,10 +4,10 @@ import actionTypes from './actionTypes';
 
 const url = process.env.REACT_APP_URL;
 
-export function loadProducts(section) {
+export function loadProducts(section, user) {
   return async (dispatch) => {
     try {
-      const { data } = await axios(`${url}/${section}`, { headers: { Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjIyNjQ0MjUwfQ.x4_E-fZiLhOVbG7EFRwqJwDrUigQMnuRvQRS6TqXTXA'}` } });
+      const { data } = await axios(`${url}/products/${section}`, { headers: { Authorization: `Bearer ${user.token}` } });
       dispatch({
         type: actionTypes.LOAD_PRODUCTS,
         products: data,
@@ -52,7 +52,7 @@ export function updateProduct(product, section) {
 
 export function loadProduct(productId, section) {
   return async (dispatch) => {
-    const { data } = await axios(`${url}/${section}/${productId}`, { headers: { Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjIyNjQ0MjUwfQ.x4_E-fZiLhOVbG7EFRwqJwDrUigQMnuRvQRS6TqXTXA'}` } });
+    const { data } = await axios(`${url}/products/${section}/${productId}`, { headers: { Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjIyNjQ0MjUwfQ.x4_E-fZiLhOVbG7EFRwqJwDrUigQMnuRvQRS6TqXTXA'}` } });
     dispatch({
       type: actionTypes.LOAD_PRODUCT,
       product: data,

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const Camera = mongoose.model('Camera');
 
 const userSchema = mongoose.Schema({
   name: String,
@@ -9,8 +11,8 @@ const userSchema = mongoose.Schema({
   cp: Number,
   phone: Number,
   password: String,
-  favorites: [String],
-
+  favorites: [{ type: Schema.ObjectId, ref: "Camera" }],
+  cart: [{ type: Schema.ObjectId, ref: "Camera" }],
 });
 
 userSchema.methods.isValidPassword = function isValidPassword(password) {

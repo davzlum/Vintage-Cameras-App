@@ -7,9 +7,9 @@ import { loadProducts } from '../../../redux/actions/actionCreators';
 
 import('./index.scss');
 
-function CamerasList({ products, dispatch }) {
+function CamerasList({ products, dispatch, user }) {
   useEffect(() => {
-    if (!products.length) dispatch(loadProducts('cameras'));
+    if (!products.length) dispatch(loadProducts('cameras', user));
   }, []);
 
   return (
@@ -40,11 +40,13 @@ function CamerasList({ products, dispatch }) {
 CamerasList.propTypes = {
   products: PropTypes.shape([]).isRequired,
   dispatch: PropTypes.func.isRequired,
+  user: PropTypes.shape({}).isRequired,
 };
 
-function mapStateToProps(store) {
+function mapStateToProps({ products, user }) {
   return {
-    products: store.products,
+    products,
+    user,
   };
 }
 

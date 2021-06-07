@@ -17,7 +17,7 @@ function usersController() {
     try {
       const userById = await User.findById(
         req.params.userId,
-      );
+      ).populate('cart');
       res.json(userById);
     } catch (error) {
       debug(error);

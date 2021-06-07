@@ -20,6 +20,8 @@ function cartReducer(cartList = [], action) {
 
     case actionTypes.UPDATE_PRODUCTS:
       return [];
+    case actionTypes.LOGIN:
+      return action.user.user.cart;
     default:
       return cartList;
   }

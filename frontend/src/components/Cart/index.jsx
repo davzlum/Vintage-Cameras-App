@@ -8,7 +8,7 @@ import {
 } from '../../redux/actions/actionCreatorsCart';
 import './cart.scss';
 
-function ShoppingCart({ cartList, dispatch }) {
+function ShoppingCart({ cartList, dispatch, user }) {
   useEffect(() => {
     dispatch(loadCart());
   }, []);
@@ -54,7 +54,7 @@ function ShoppingCart({ cartList, dispatch }) {
                       {product.price}
                       {' €  '}
                     </p>
-                    <button type="button" className="button-remove" data-testid="button-remove" onClick={() => dispatch(deleteFromCart(product))}> </button>
+                    <button type="button" className="button-remove" data-testid="button-remove" onClick={() => dispatch(deleteFromCart(product, user, cartList))}> </button>
                   </span>
                 </li>
               )) : <p>No products at cart</p>}
@@ -80,12 +80,13 @@ function ShoppingCart({ cartList, dispatch }) {
 }
 
 ShoppingCart.propTypes = {
+  user: PropTypes.shape({}).isRequired,
   cartList: PropTypes.shape([]).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ cartList }) {
-  return { cartList };
+function mapStateToProps({ cartList, user }) {
+  return { cartList, user };
 }
 
 export default connect(mapStateToProps)(ShoppingCart);

@@ -11,7 +11,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './cameraDetail.scss';
 
-function CameraDetail({ selectedProduct, dispatch }) {
+function CameraDetail({
+  selectedProduct, dispatch, user, cartList,
+}) {
   const { cameraId } = useParams();
   useEffect(() => {
     dispatch(loadProduct(cameraId, 'cameras'));
@@ -88,7 +90,7 @@ function CameraDetail({ selectedProduct, dispatch }) {
         <button
           type="button"
           className="button cart"
-          onClick={() => { dispatch(addToCart(selectedProduct)); }}
+          onClick={() => { dispatch(addToCart(selectedProduct, user, cartList)); }}
         >
           <Link to="/cart">
             Add to cart
@@ -118,12 +120,16 @@ CameraDetail.propTypes = {
       film: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  user: PropTypes.shape({}).isRequired,
+  cartList: PropTypes.shape([]).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ selectedProduct }) {
+function mapStateToProps({ selectedProduct, user, cartList }) {
   return {
     selectedProduct,
+    user,
+    cartList,
   };
 }
 
