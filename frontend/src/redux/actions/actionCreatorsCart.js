@@ -21,8 +21,9 @@ export function loadCart() {
 }
 
 export function deleteFromCart(product, user, cart) {
+  cart.splice(cart.indexOf(product), 1);
   return async (dispatch) => {
-    await axios.put(`${url}/user/${user.user._id}`, { cart: [cart] }, { headers: { Authorization: `Bearer ${user.token}` } });
+    await axios.put(`${url}/user/${user.user._id}`, { cart }, { headers: { Authorization: `Bearer ${user.token}` } });
     dispatch({
       type: actionTypes.DELETE_CART_PRODUCT,
       product,
