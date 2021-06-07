@@ -14,6 +14,7 @@ import Login from './components/Login';
 import Cart from './components/Cart';
 import configureStore from './redux/store';
 import './App.css';
+import Favorites from './components/Favorites';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/favorites" component={Favorites} />
           <Route exact path="/cameras" component={CamerasList} />
           <Route exact path="/cameras/:cameraId" component={CameraDetail} />
           <Route exact path="/cart" component={Cart} />

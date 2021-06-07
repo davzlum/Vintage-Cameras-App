@@ -29,6 +29,7 @@ function Header({ cartList, dispatch, user }) {
             <li className="section-item"><Link to="/cameras">Cameras</Link></li>
             <li className="section-item">Lenses</li>
             <li className="section-item">Films</li>
+            <li className="section-item"><Link to="/favorites">My favorites</Link></li>
           </ul>
         </li>
         <li className="header-container__logo">
