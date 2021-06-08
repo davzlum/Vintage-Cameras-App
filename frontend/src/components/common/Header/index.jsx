@@ -25,7 +25,6 @@ function Header({ cartList, dispatch, user }) {
         <li className="header-container__nav">
           <img src={nav} alt="navigation" />
           <ul className="sections-list">
-            <li className="section-item"><Link to="/">Home</Link></li>
             <li className="section-item"><Link to="/cameras">Cameras</Link></li>
             <li className="section-item">Lenses</li>
             <li className="section-item">Films</li>
@@ -33,7 +32,7 @@ function Header({ cartList, dispatch, user }) {
           </ul>
         </li>
         <li className="header-container__logo">
-          <img src={logo} alt="logo" />
+          <Link to="/"><img src={logo} alt="logo" /></Link>
         </li>
         <li className="header-container__right">
           <span className="header-cart">
