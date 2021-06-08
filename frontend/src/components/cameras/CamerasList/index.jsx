@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { loadProducts } from '../../../redux/actions/actionCreators';
@@ -13,18 +14,19 @@ import('./index.scss');
 function CamerasList({
   products, dispatch, user, favorites,
 }) {
+  const { section } = useParams();
   useEffect(() => {
-    if (!products.length) dispatch(loadProducts('cameras', user));
+    if (!products.length) dispatch(loadProducts(section, user));
   }, [favorites]);
 
   return (
     <>
-      <h1>Cameras</h1>
+      <h1>{section}</h1>
       <ul className="cameras">
         {products.map((product) => (
           <li className="cameras__item">
             <div className={product.sold && 'sold-label'} />
-            <Link to={`/cameras/${product._id}`}>
+            <Link to={`/${section}/${product._id}`}>
               <div className="item-info">
                 <span>{product.cameraModel}</span>
                 <span>

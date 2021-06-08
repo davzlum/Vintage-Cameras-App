@@ -25,9 +25,9 @@ function Header({ cartList, dispatch, user }) {
         <li className="header-container__nav">
           <img src={nav} alt="navigation" />
           <ul className="sections-list">
-            <li className="section-item"><Link to="/cameras">Cameras</Link></li>
-            <li className="section-item">Lenses</li>
-            <li className="section-item">Films</li>
+            <li className="section-item"><Link to={`/${'cameras'}`}>Cameras</Link></li>
+            <li className="section-item"><Link to={`/${'lenses'}`}>Lenses</Link></li>
+            <li className="section-item"><Link to={`/${'films'}`}>Films</Link></li>
             <li className="section-item"><Link to="/favorites">My favorites</Link></li>
           </ul>
         </li>
