@@ -4,12 +4,14 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Slider from 'react-slick';
+import { confirmAlert } from 'react-confirm-alert';
 import { loadProduct } from '../../../redux/actions/actionCreators';
 import { addToCart } from '../../../redux/actions/actionCreatorsCart';
 import favoriteEmpty from '../../../assets/heart-regular.svg';
 import favoriteSolid from '../../../assets/heart-solid.svg';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { addToFavorites, deleteFromFavorites } from '../../../redux/actions/actionCreatorsFavorites';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -23,6 +25,27 @@ function CameraDetail({
     dispatch(loadProduct(cameraId, 'cameras'));
   }, []);
   const renderSlides = () => selectedProduct?.images?.map((img) => <div className="img-container"><img src={img} alt="images" /></div>);
+  const history = useHistory();
+  const submit = () => {
+    // eslint-disable-next-line no-debugger
+    debugger;
+    confirmAlert({
+      title: 'Your product is already in Cart',
+      message: 'Do you want to navigate to your cart?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            const path = '/cart';
+            history.push(path);
+          },
+        },
+        {
+          label: 'No',
+        },
+      ],
+    });
+  };
 
   return (
     <div>
@@ -94,16 +117,28 @@ function CameraDetail({
         </div>
       </div>
       <div className="button-container">
-        <button
-          type="button"
-          disabled={cartList.find((cartProduct) => selectedProduct._id === cartProduct._id)}
-          className="button cart"
-          onClick={() => dispatch(addToCart(selectedProduct, user, cartList))}
-        >
-          <Link to="/cart">
-            Add to cart
-          </Link>
-        </button>
+        {(cartList.find((cartProduct) => selectedProduct._id === cartProduct._id)
+
+          ? (
+            <button
+              type="button"
+              className="button cart"
+              onClick={submit}
+            >
+              <p>Add to cart</p>
+            </button>
+          )
+          : (
+            <Link to="/cart">
+              <button
+                type="button"
+                className="button cart"
+                onClick={() => dispatch(addToCart(selectedProduct, user, cartList))}
+              >
+                <p>Add to cart</p>
+              </button>
+            </Link>
+          ))}
         <button type="button" className="button info"><Link to="/cameras">Go back</Link></button>
       </div>
     </div>
