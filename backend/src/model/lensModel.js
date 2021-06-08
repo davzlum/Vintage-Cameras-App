@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const lensSchema = mongoose.Schema({
-  lensModel: String,
+  productModel: String,
   year: String,
   arsenalFactory: String,
   specifications: {
@@ -14,7 +14,7 @@ const lensSchema = mongoose.Schema({
   history: String,
   price: Number,
   images: [String],
-  favState: Boolean,
+  section: String,
 });
 
 module.exports = mongoose.model('Lens', lensSchema);
