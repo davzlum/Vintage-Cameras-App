@@ -16,8 +16,8 @@ function CamerasList({
 }) {
   const { section } = useParams();
   useEffect(() => {
-    if (!products.length) dispatch(loadProducts(section, user));
-  }, [favorites]);
+    dispatch(loadProducts(section, user));
+  }, [favorites, section]);
 
   return (
     <>

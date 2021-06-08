@@ -53,11 +53,11 @@ function ShoppingCart({ cartList, dispatch, user }) {
 
                   <div className="shopping-cart__left">
                     <div className="image-container">
-                      <img src={product?.images[0]} alt={product.cameraModel} />
+                      <img src={product?.images[0]} alt={product.productModel} />
                     </div>
                     <span className="information">
                       <Link to={`/${product.section}/${product._id}`}>
-                        <p className="title-model">{product.cameraModel}</p>
+                        <p className="title-model">{product.productModel}</p>
                       </Link>
                       <p className="title-lens">{product.specifications.lens}</p>
                     </span>

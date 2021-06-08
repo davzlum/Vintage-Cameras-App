@@ -20,9 +20,9 @@ import './cameraDetail.scss';
 function CameraDetail({
   selectedProduct, dispatch, user, cartList, favorites,
 }) {
-  const { cameraId } = useParams();
+  const { productId, section } = useParams();
   useEffect(() => {
-    dispatch(loadProduct(cameraId, 'cameras'));
+    dispatch(loadProduct(productId, section));
   }, []);
   const renderSlides = () => selectedProduct?.images?.map((img) => <div className="img-container"><img src={img} alt="images" /></div>);
   const history = useHistory();
@@ -49,7 +49,11 @@ function CameraDetail({
 
   return (
     <div>
-      <h1>Camera detail</h1>
+      <h1>
+        {section}
+        {' '}
+        detail
+      </h1>
       <div className="camera-detail">
         <Slider dots>{renderSlides()}</Slider>
         <button type="button" className="favorite-button" onClick={() => dispatch(favorites.find((favorite) => selectedProduct._id === favorite._id) ? deleteFromFavorites(selectedProduct, user, favorites) : addToFavorites(selectedProduct, user, favorites))}>
@@ -139,7 +143,7 @@ function CameraDetail({
               </button>
             </Link>
           ))}
-        <button type="button" className="button info"><Link to="/cameras">Go back</Link></button>
+        <button type="button" className="button info"><Link to={`/${section}`}>Go back</Link></button>
       </div>
     </div>
   );

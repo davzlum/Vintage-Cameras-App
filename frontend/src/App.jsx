@@ -25,9 +25,9 @@ function App() {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/favorites" component={Favorites} />
-          <Route exact path="/:section" component={CamerasList} />
-          <Route exact path="/:section/:cameraId" component={CameraDetail} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/:section" component={CamerasList} />
+          <Route exact path="/:section/:productId" component={CameraDetail} />
           <Redirect to="/" />
         </Switch>
       </Router>
