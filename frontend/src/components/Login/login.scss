@@ -5,10 +5,13 @@
     @include flex-content(flex, column, center, center);
     background-image: url('https://i.ibb.co/PGWZMtw/vintage-cameras-arrangement-free-photo.jpg');
     background-repeat: no-repeat;
-    background-size: 250%;
-    height: calc(100vh - 80px);
-    position: relative;
+    background-size: 270%;
+    height: 100vh;
+    position: absolute;
+    top:0;
+    width: 100%;
     overflow: hidden;
+    z-index: 4;
     .login-information{
         z-index: 2;
     }
@@ -61,6 +64,6 @@
     background-color: $color-dark;
     opacity: 50%;
     width: 100vw;
-    height: calc(100vh - 80px);
+    height: 100vh;
     backdrop-filter: blur(2px);
 }

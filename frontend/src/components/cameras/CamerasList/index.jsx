@@ -28,14 +28,14 @@ function CamerasList({
             <div className={product.sold && 'sold-label'} />
             <Link to={`/${section}/${product._id}`}>
               <div className="item-info">
-                <span>{product.cameraModel}</span>
+                <span>{product.productModel}</span>
                 <span>
                   {product.price}
                   €
                 </span>
               </div>
               <div className="item-image">
-                <img src={product.images[0]} alt={product.cameraModel} />
+                <img src={product.images[0]} alt={product.productModel} />
               </div>
             </Link>
             <button type="button" className="favorite-button" onClick={() => dispatch(favorites.find((favorite) => product._id === favorite._id) ? deleteFromFavorites(product, user, favorites) : addToFavorites(product, user, favorites))}>

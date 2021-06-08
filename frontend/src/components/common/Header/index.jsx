@@ -20,40 +20,44 @@ function Header({ cartList, dispatch, user }) {
   }, []);
 
   return (
-    <header className="header">
-      <ul className="header-container">
-        <li className="header-container__nav">
-          <img src={nav} alt="navigation" />
-          <ul className="sections-list">
-            <li className="section-item"><Link to={`/${'cameras'}`}>Cameras</Link></li>
-            <li className="section-item"><Link to={`/${'lenses'}`}>Lenses</Link></li>
-            <li className="section-item"><Link to={`/${'films'}`}>Films</Link></li>
-            <li className="section-item"><Link to="/favorites">My favorites</Link></li>
+    user.token
+      ? (
+        <header className="header">
+          <ul className="header-container">
+            <li className="header-container__nav">
+              <img src={nav} alt="navigation" />
+              <ul className="sections-list">
+                <li className="section-item"><Link to={`/${'cameras'}`}>Cameras</Link></li>
+                <li className="section-item"><Link to={`/${'lenses'}`}>Lenses</Link></li>
+                <li className="section-item"><Link to={`/${'films'}`}>Films</Link></li>
+                <li className="section-item"><Link to="/favorites">My favorites</Link></li>
+              </ul>
+            </li>
+            <li className="header-container__logo">
+              <Link to="/"><img src={logo} alt="logo" /></Link>
+            </li>
+            <li className="header-container__right">
+              <span className="header-cart">
+                <Link to="/cart">
+                  <img src={cart} alt="cart" />
+                  {cartList.length
+                    ? (
+                      <>
+                        <span className="cart-number">{cartList.length}</span>
+                        <span className="cart-circle"> </span>
+                      </>
+                    )
+                    : <span />}
+                </Link>
+              </span>
+              <span className="header-user">
+                <img src={userlogo} alt="user" />
+              </span>
+            </li>
           </ul>
-        </li>
-        <li className="header-container__logo">
-          <Link to="/"><img src={logo} alt="logo" /></Link>
-        </li>
-        <li className="header-container__right">
-          <span className="header-cart">
-            <Link to="/cart">
-              <img src={cart} alt="cart" />
-              {cartList.length
-                ? (
-                  <>
-                    <span className="cart-number">{cartList.length}</span>
-                    <span className="cart-circle"> </span>
-                  </>
-                )
-                : <span />}
-            </Link>
-          </span>
-          <span className="header-user">
-            <img src={userlogo} alt="user" />
-          </span>
-        </li>
-      </ul>
-    </header>
+        </header>
+      )
+      : ''
   );
 }
 

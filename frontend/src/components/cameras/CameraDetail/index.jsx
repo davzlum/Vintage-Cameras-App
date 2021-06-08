@@ -60,7 +60,7 @@ function CameraDetail({
           <img src={favorites.find((favorite) => selectedProduct._id === favorite._id) ? favoriteSolid : favoriteEmpty} alt="favorite" />
         </button>
         <div className="model-price">
-          <h2>{selectedProduct?.cameraModel}</h2>
+          <h2>{selectedProduct?.productModel}</h2>
           <h2>
             {selectedProduct?.price}
             €
@@ -152,7 +152,7 @@ function CameraDetail({
 CameraDetail.propTypes = {
   selectedProduct: PropTypes.shape({
     _id: PropTypes.string,
-    cameraModel: PropTypes.string,
+    productModel: PropTypes.string,
     images: PropTypes.shape([]).isRequired,
     history: PropTypes.string,
     price: PropTypes.number,
