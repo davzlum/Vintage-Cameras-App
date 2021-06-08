@@ -2,6 +2,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Link } from 'react-router-dom';
 import {
   deleteFromCart, updateCart,
@@ -22,6 +24,22 @@ function ShoppingCart({ cartList, dispatch, user }) {
       dispatch(updateCart(updatedProduct));
     });
   }
+
+  const submit = (product) => {
+    confirmAlert({
+      title: 'Confirm to remove',
+      message: 'Are you sure you want to remove this product from your cart',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => dispatch(deleteFromCart(product, user, cartList)),
+        },
+        {
+          label: 'No',
+        },
+      ],
+    });
+  };
 
   return (
     <>
@@ -49,7 +67,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
                       {product.price}
                       {' €  '}
                     </p>
-                    <button type="button" className="button-remove" data-testid="button-remove" onClick={() => dispatch(deleteFromCart(product, user, cartList))}> </button>
+                    <button type="button" className="button-remove" data-testid="button-remove" onClick={() => submit(product)}> </button>
                   </span>
                 </li>
               )) : <p>No products at cart</p>}
