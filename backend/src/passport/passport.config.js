@@ -2,6 +2,7 @@ const passport = require('passport');
 const JWTstrategy = require('passport-jwt');
 const localStrategy = require('passport-local');
 const User = require('../model/userModel');
+const md5 = require('md5');
 
 passport.use(
   'signup',
@@ -11,8 +12,9 @@ passport.use(
       passwordField: 'password',
       passReqToCallback: true,
     },
-    async function createOne(req, email, password, done) {
-      const existingUser = new User.findOne({email});
+    async (req, email, password, done) => {
+      const existingUser = await User.findOne({email});
+      debugger;
       if (existingUser) {
         return done(null, false, { message: 'User alredy exists' });
       }
@@ -25,15 +27,12 @@ passport.use(
         cp: req.body.cp,
         phone: req.body.phone,
         password: md5(password),
-        favorites: [{type: Schema.ObjectId, ref: 'Camera' }],
-        cart: [{ type: Schema.ObjectId, ref: 'Camera' }],
       });
-      debug(newUser);
       try {
+        console.log(newUser);
         await newUser.save();
         res.json(newUser);
       } catch (error) {
-        debug(error);
         res.send(error);
         res.status(404);
       }
