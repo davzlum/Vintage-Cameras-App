@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import login from '../../redux/actions/actionCreatorsUser';
 import './login.scss';
 
 function Login({ dispatch, user }) {
+  const history = useHistory();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -20,6 +21,10 @@ function Login({ dispatch, user }) {
     event.preventDefault();
     dispatch(login(email, password));
   }
+  const handleRegistration = () => {
+    const path = '/register';
+    history.push(path);
+  };
   if (user.token) {
     return <Redirect to="/" />;
   }
@@ -43,7 +48,7 @@ function Login({ dispatch, user }) {
           </div>
           <div className="button">
             <button onClick={userLogin} className="button__item" type="submit" name="login-button" id="login-button">Login</button>
-            <input className="button__item button__item--black" type="submit" name="sign-button" id="sign-button" value="sign up" />
+            <input onClick={handleRegistration} className="button__item button__item--black" type="submit" name="sign-button" id="sign-button" value="sign up" />
           </div>
         </form>
       </div>

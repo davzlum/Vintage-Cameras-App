@@ -3,52 +3,54 @@ import React from 'react';
 function Register() {
   return (
     <>
+      <h1>Register</h1>
       <form className="form-container">
+        <p>(*) is required</p>
         <div className="form-floating">
           <label htmlFor="name">
-            <span>Name: *</span>
+            <p>Name: *</p>
             <input type="text" placeholder="Insert name" required />
           </label>
         </div>
         <div className="form-floating">
           <label htmlFor="username">
-            <span>Username: *</span>
+            <p>Username: *</p>
             <input type="text" placeholder="Insert username" required />
           </label>
         </div>
         <div className="form-floating">
           <label htmlFor="email">
-            <span>Email: *</span>
+            <p>Email: *</p>
             <input type="email" placeholder="Insert email" required />
           </label>
         </div>
         <div className="form-floating">
           <label htmlFor="password">
-            <span>Password: *</span>
+            <p>Password: *</p>
             <input type="password" placeholder="Insert password" minLength="6" required />
           </label>
         </div>
         <div className="form-floating">
           <label htmlFor="phone">
-            <span>Phone:</span>
+            <p>Phone:</p>
             <input type="tel" placeholder="Insert phone" />
           </label>
         </div>
         <div className="form-floating">
           <label htmlFor="address">
-            <span>Address:</span>
+            <p>Address:</p>
             <input type="text" placeholder="Insert address" />
           </label>
         </div>
         <div className="form-floating">
           <label htmlFor="city">
-            <span>City:</span>
+            <p>City:</p>
             <input type="text" placeholder="Insert city" />
           </label>
         </div>
         <div className="form-floating">
           <label htmlFor="postal">
-            <span>P.C.:</span>
+            <p>P.C.:</p>
             <input type="number" placeholder="Insert postal code" maxLength="5" />
           </label>
         </div>
