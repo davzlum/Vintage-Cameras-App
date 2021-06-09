@@ -9,14 +9,33 @@ passport.use(
     {
       usernameField: 'email',
       passwordField: 'password',
+      passReqToCallback: true,
     },
-    async (email, password, done) => {
+    async function createOne(req, email, password, done) {
+      const existingUser = new User.findOne({email});
+      if (existingUser) {
+        return done(null, false, { message: 'User alredy exists' });
+      }
+      const newUser = new User({
+        name: req.body.name,
+        username: req.body.username,
+        email: email.toLowerCase(),
+        address: req.body.address,
+        city: req.body.city,
+        cp: req.body.cp,
+        phone: req.body.phone,
+        password: md5(password),
+        favorites: [{type: Schema.ObjectId, ref: 'Camera' }],
+        cart: [{ type: Schema.ObjectId, ref: 'Camera' }],
+      });
+      debug(newUser);
       try {
-        const user = await User.create({ email, password });
-
-        return done(null, user);
+        await newUser.save();
+        res.json(newUser);
       } catch (error) {
-        return done(error);
+        debug(error);
+        res.send(error);
+        res.status(404);
       }
     },
   ),
