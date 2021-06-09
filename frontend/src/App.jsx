@@ -6,8 +6,8 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import CamerasList from './components/cameras/CamerasList';
-import CameraDetail from './components/cameras/CameraDetail';
+import CamerasList from './components/Products/ProductsList';
+import CameraDetail from './components/Products/ProductDetail';
 import Header from './components/common/Header';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
