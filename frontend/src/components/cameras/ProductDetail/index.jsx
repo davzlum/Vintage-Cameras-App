@@ -27,8 +27,6 @@ function CameraDetail({
   const renderSlides = () => selectedProduct?.images?.map((img) => <div className="img-container"><img src={img} alt="images" /></div>);
   const history = useHistory();
   const submit = () => {
-    // eslint-disable-next-line no-debugger
-    debugger;
     confirmAlert({
       title: 'Your product is already in Cart',
       message: 'Do you want to navigate to your cart?',

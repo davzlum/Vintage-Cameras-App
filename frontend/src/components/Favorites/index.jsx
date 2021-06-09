@@ -15,7 +15,7 @@ function Favorites({
       <ul className="cameras">
         {favorites.map((product) => (
           <li className="cameras__item">
-            <Link to={`/cameras/${product._id}`}>
+            <Link to={`/${product.section}/${product._id}`}>
               <div className="item-info">
                 <span>{product.cameraModel}</span>
                 <span>
