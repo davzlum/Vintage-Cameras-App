@@ -2,6 +2,7 @@ const passport = require('passport');
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('./../model/userModel');
+const debug = require('debug')('app:usersController');
 
 let refreshTokens = [];
 const authRoutes = Router();
@@ -9,13 +10,19 @@ const authRoutes = Router();
 authRoutes.post(
   '/signup',
   passport.authenticate('signup', { session: false }),
-  async (req, res) => {
-    res.json({
-      message: 'Signup successful',
-      user: req.user,
-    });
-  },
-);
+  async function createOne(req, res) {
+    const newUser = new User(req.body);
+    debug(newUser);
+    try {
+      await newUser.save();
+      res.json(newUser);
+    } catch (error) {
+      debug(error);
+      res.send(error);
+      res.status(404);
+    }
+  }
+)
 
 authRoutes.post(
   '/login',
