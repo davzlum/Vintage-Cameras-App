@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const Camera = mongoose.model('Camera');
 const Film = mongoose.model('Film');
 const Lens = mongoose.model('Lens');
+const md5 = require('md5');
 
 
 const userSchema = mongoose.Schema({
@@ -25,6 +26,7 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.methods.isValidPassword = function isValidPassword(password) {
+  // return password === this.password;
   return md5(password) === this.password;
 };
 

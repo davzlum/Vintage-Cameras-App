@@ -13,28 +13,25 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, email, password, done) => {
-      const existingUser = await User.findOne({email});
-      debugger;
-      if (existingUser) {
-        return done(null, false, { message: 'User alredy exists' });
-      }
-      const newUser = new User({
-        name: req.body.name,
-        username: req.body.username,
-        email: email.toLowerCase(),
-        address: req.body.address,
-        city: req.body.city,
-        cp: req.body.cp,
-        phone: req.body.phone,
-        password: md5(password),
-      });
       try {
-        console.log(newUser);
-        await newUser.save();
-        res.json(newUser);
+        const existingUser = await User.findOne({email});
+        if (existingUser) {
+        return done(null, false, { message: 'User alredy exists' });
+        }
+        const newUser = new User({
+          name: req.body.name,
+          username: req.body.username,
+          email: email.toLowerCase(),
+          address: req.body.address,
+          city: req.body.city,
+          cp: req.body.cp,
+          phone: req.body.phone,
+          password: md5(password),
+        });
+
+        return done(null, user);
       } catch (error) {
-        res.send(error);
-        res.status(404);
+        return done(error);
       }
     },
   ),
