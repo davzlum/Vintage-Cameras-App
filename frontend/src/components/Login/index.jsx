@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
-import login from '../../redux/actions/actionCreatorsUser';
+import { login } from '../../redux/actions/actionCreatorsUser';
 import './login.scss';
 
 function Login({ dispatch, user }) {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { signup } from '../../redux/actions/actionCreatorsUser';
 
 function Register() {
   const dispatch = useDispatch();
@@ -15,17 +16,17 @@ function Register() {
     favorites: [],
     cart: [],
   });
+
   const handleInputChange = (event) => {
-    // console.log(event.target.name)
-    // console.log(event.target.value)
     setData({
       ...data,
       [event.target.name]: event.target.value,
     });
   };
+
   const sendData = (event) => {
     event.preventDefault();
-    dispatch();
+    dispatch(signup(data));
   };
 
   return (

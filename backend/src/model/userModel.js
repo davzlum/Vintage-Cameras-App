@@ -15,11 +15,11 @@ const userSchema = mongoose.Schema({
   phone: Number,
   password: String,
   favorites: [{type: Schema.ObjectId, ref: 'Camera' }],
-  onModel: {
-    type: String,
-    required: true,
-    enum: ['Camera', 'Film', 'Lens']
-  },
+  // onModel: {
+  //   type: String,
+  //   required: true,
+  //   enum: ['Camera', 'Film', 'Lens']
+  // },
   cart: [{ type: Schema.ObjectId, ref: 'Camera' }],
   
 });
