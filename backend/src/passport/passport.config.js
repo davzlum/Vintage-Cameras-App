@@ -29,7 +29,7 @@ passport.use(
           password: md5(password),
         });
 
-        return done(null, user);
+        return done(null, newUser);
       } catch (error) {
         return done(error);
       }

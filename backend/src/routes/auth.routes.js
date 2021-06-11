@@ -2,6 +2,7 @@ const passport = require('passport');
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('./../model/userModel');
+const md5 = require('md5')
 
 let refreshTokens = [];
 const authRoutes = Router();
@@ -10,10 +11,24 @@ authRoutes.post(
   '/signup',
   passport.authenticate('signup', { session: false }),
   async (req, res) => {
-    res.json({
-      message: 'Signup successful',
-      user: req.user,
+    const user = new User({
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email.toLowerCase(),
+      address: req.body.address,
+      city: req.body.city,
+      cp: req.body.cp,
+      phone: req.body.phone,
+      password: md5(req.body.password),
     });
+    try{
+      user.save();
+      res.status(200)
+      res.send('Signup successful')
+    }catch{
+      res.status(500)
+      res.send('We could not register the user')
+    }
   },
 );
 
@@ -49,8 +64,15 @@ authRoutes.post(
 
               const userById = await User.findById(
                 user._id
-              ).populate('cart').populate('favorites');
-
+              )
+              .populate({
+                path: 'cart', 
+                populate: ['cameras', 'lenses', 'films']
+              })
+              .populate({
+                path: 'favorites', 
+                populate: ['cameras', 'lenses', 'films']
+              });
               refreshTokens.push(refreshToken);
 
               return res.json({

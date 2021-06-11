@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -7,18 +8,18 @@ import { PropTypes } from 'prop-types';
 import { loadProducts } from '../../../redux/actions/actionCreators';
 import favoriteEmpty from '../../../assets/heart-regular.svg';
 import favoriteSolid from '../../../assets/heart-solid.svg';
-import { addToFavorites, deleteFromFavorites } from '../../../redux/actions/actionCreatorsFavorites';
+import { toggleFavorite } from '../../../redux/actions/actionCreatorsFavorites';
 
 import('./index.scss');
 
 function CamerasList({
-  products, dispatch, user, favorites,
+  products, dispatch, user,
 }) {
   const { section } = useParams();
+
   useEffect(() => {
     dispatch(loadProducts(section, user));
-  }, [favorites, section]);
-
+  }, [section]);
   return (
     <>
       <h1>{section}</h1>
@@ -29,6 +30,7 @@ function CamerasList({
             <Link to={`/${section}/${product._id}`}>
               <div className="item-info">
                 <span>{product.productModel}</span>
+                <span>{product.isFavorite ? 'true' : 'false'}</span>
                 <span>
                   {product.price}
                   €
@@ -38,8 +40,18 @@ function CamerasList({
                 <img src={product.images[0]} alt={product.productModel} />
               </div>
             </Link>
-            <button type="button" className="favorite-button" onClick={() => dispatch(favorites.find((favorite) => product._id === favorite._id) ? deleteFromFavorites(product, user, favorites) : addToFavorites(product, user, favorites))}>
-              <img src={favorites.find((favorite) => product._id === favorite._id) ? favoriteSolid : favoriteEmpty} alt="favorite" />
+            <button
+              type="button"
+              className="favorite-button"
+              onClick={() => {
+                dispatch(toggleFavorite(product.isFavorite, product, user));
+              }}
+            >
+              <img
+                src={product.isFavorite
+                  ? favoriteSolid : favoriteEmpty}
+                alt="favorite"
+              />
             </button>
           </li>
         ))}
@@ -56,14 +68,18 @@ CamerasList.propTypes = {
       favorites: PropTypes.shape([]),
     }),
   }).isRequired,
-  favorites: PropTypes.shape([]).isRequired,
+  favorites: PropTypes.shape({
+    length: PropTypes.number,
+  }).isRequired,
 };
 
 function mapStateToProps({ products, user, favorites }) {
   return {
-    products,
+    products: products.map((product) => ({
+      ...product,
+      isFavorite: favorites[product.section]?.some((fav) => fav._id === product._id),
+    })),
     user,
-    favorites,
   };
 }
 

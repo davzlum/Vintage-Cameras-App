@@ -98,8 +98,11 @@ ShoppingCart.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ cartList, user }) {
-  return { cartList, user };
+function mapStateToProps({ cartList: { cameras, lenses, films }, user }) {
+  return {
+    cartList: [...cameras, ...lenses, ...films],
+    user,
+  };
 }
 
 export default connect(mapStateToProps)(ShoppingCart);

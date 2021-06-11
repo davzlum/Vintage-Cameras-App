@@ -1,24 +1,31 @@
 /* eslint-disable no-underscore-dangle */
 import actionTypes from '../actions/actionTypes';
+import findOnlySection from '../../components/Products/ProductsList/findOnlySection';
 
-function cartReducer(cartList = [], action) {
+function cartReducer(cartList = {}, action) {
   switch (action.type) {
     case actionTypes.LOAD_CART_PRODUCT:
       return cartList;
 
     case actionTypes.ADD_PRODUCTS_TO_CART:
-      return [
+      return {
         ...cartList,
-        {
-          ...action.product,
-        },
-      ];
+        [action.product.section]: [
+          ...findOnlySection(action.product.section, cartList),
+          action.product,
+        ],
+      };
 
     case actionTypes.DELETE_CART_PRODUCT:
-      return [...cartList];
+      return {
+        ...cartList,
+        [action.product.section]: [
+          ...cartList,
+        ],
+      };
 
     case actionTypes.UPDATE_PRODUCTS:
-      return [];
+      return {};
     case actionTypes.LOGIN:
       return action.user.user.cart;
     default:

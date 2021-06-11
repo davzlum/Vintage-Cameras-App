@@ -15,13 +15,16 @@ const userSchema = mongoose.Schema({
   cp: Number,
   phone: Number,
   password: String,
-  favorites: [{type: Schema.ObjectId, ref: 'Camera' }],
-  // onModel: {
-  //   type: String,
-  //   required: true,
-  //   enum: ['Camera', 'Film', 'Lens']
-  // },
-  cart: [{ type: Schema.ObjectId, ref: 'Camera' }],
+  favorites: {
+    cameras: [{type: Schema.ObjectId, ref: 'Camera' }],
+    lenses: [{type: Schema.ObjectId, ref: 'Lens' }],
+    films: [{type: Schema.ObjectId, ref: 'Film' }],
+  },
+  cart: {
+    cameras: [{type: Schema.ObjectId, ref: 'Camera' }],
+    lenses: [{type: Schema.ObjectId, ref: 'Lens' }],
+    films: [{type: Schema.ObjectId, ref: 'Film' }],
+  },
   
 });
 

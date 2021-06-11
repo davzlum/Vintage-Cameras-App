@@ -17,7 +17,15 @@ function usersController() {
     try {
       const userById = await User.findById(
         req.params.userId,
-      ).populate('cart').populate('favorites');
+      )
+      .populate({
+        path: 'cart', 
+        populate: ['camera', 'lens', 'film']
+      })
+      .populate({
+        path: 'favorites', 
+        populate: ['camera', 'lens', 'film']
+      });
       res.json(userById);
     } catch (error) {
       debug(error);
@@ -52,13 +60,29 @@ function usersController() {
   }
 
   async function updateById(req, res) {
+    let updateData = req.body;
+    if(Object.keys(updateData).some(key => key === 'isFavorite')) {
+      if (updateData.isFavorite) {
+        updateData = {
+         ...updateData,
+          $pull: { [`favorites.${updateData.product.section}`]: updateData.product._id}
+         
+        }
+      } else {
+        updateData = {
+      ...updateData,
+          $push: { [`favorites.${updateData.product.section}`]: updateData.product._id}
+        }
+      }
+    }
     try {
       const updatedUser = await User.findByIdAndUpdate(
         req.params.userId,
-        req.body,
+        updateData,
         { new: true },
       );
       res.json(updatedUser);
+      console.log('asdasd',updatedUser)
     } catch (error) {
       debug(error);
       res.send(error);
