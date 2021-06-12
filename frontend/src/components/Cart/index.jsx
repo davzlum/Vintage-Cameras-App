@@ -6,11 +6,13 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Link } from 'react-router-dom';
 import {
-  deleteFromCart, updateCart,
+  toggleCart, updateCart,
 } from '../../redux/actions/actionCreatorsCart';
 import './cart.scss';
 
 function ShoppingCart({ cartList, dispatch, user }) {
+  // eslint-disable-next-line no-debugger
+  debugger;
   function getTotalCost(total, cost) {
     return total + cost;
   }
@@ -32,7 +34,8 @@ function ShoppingCart({ cartList, dispatch, user }) {
       buttons: [
         {
           label: 'Yes',
-          onClick: () => dispatch(deleteFromCart(product, user, cartList)),
+          onClick: () => dispatch(toggleCart(product.isOnCart,
+            product, user, 'cart')),
         },
         {
           label: 'No',
@@ -100,7 +103,10 @@ ShoppingCart.propTypes = {
 
 function mapStateToProps({ cartList: { cameras, lenses, films }, user }) {
   return {
-    cartList: [...cameras, ...lenses, ...films],
+    cartList: [...cameras, ...lenses, ...films].map((product) => ({
+      ...product,
+      isOnCart: true,
+    })),
     user,
   };
 }
