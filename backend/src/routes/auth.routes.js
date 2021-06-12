@@ -123,7 +123,7 @@ authRoutes.post('/token', (req, res) => {
 authRoutes.post('/logout', (req, res) => {
   const { token } = req.body;
   refreshTokens = refreshTokens.filter((current) => current !== token);
-
+  res.json({}),
   res.send('Logout successful');
 });
 

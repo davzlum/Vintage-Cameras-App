@@ -18,7 +18,7 @@ function Header({ cartList, dispatch, user }) {
 
   useEffect(() => {
     if (!user.token) history.push('/login');
-  }, []);
+  }, [user]);
   return (
     user.token
       ? (
@@ -59,7 +59,9 @@ function Header({ cartList, dispatch, user }) {
                 </Link>
               </span>
               <span className="header-user">
-                <img src={userlogo} alt="user" />
+                <Link to="/user">
+                  <img src={userlogo} alt="user" />
+                </Link>
               </span>
             </li>
           </ul>

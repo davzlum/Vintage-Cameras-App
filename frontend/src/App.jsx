@@ -11,6 +11,7 @@ import CameraDetail from './components/Products/ProductDetail';
 import Header from './components/common/Header';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
+import User from './components/User';
 import Cart from './components/Cart';
 import configureStore from './redux/store';
 import './App.css';
@@ -25,6 +26,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/user" component={User} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/favorites" component={Favorites} />
           <Route exact path="/cart" component={Cart} />

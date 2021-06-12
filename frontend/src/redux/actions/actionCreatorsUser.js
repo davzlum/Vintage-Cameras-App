@@ -3,6 +3,7 @@ import axios from 'axios';
 import actionTypes from './actionTypes';
 
 const urlLogin = process.env.REACT_APP_LOGIN_URL;
+const urlLogout = process.env.REACT_APP_LOGOUT_URL;
 const urlSignUp = process.env.REACT_APP_SIGN_UP_URL;
 
 export function login(email, password) {
@@ -21,16 +22,37 @@ export function login(email, password) {
   };
 }
 
-export function signup(data) {
+export function signup(dataFront) {
   return async (dispatch) => {
     try {
-      await axios.post(urlSignUp, data);
+      // eslint-disable-next-line no-debugger
+      debugger;
+      const { data } = await axios.post(urlSignUp, dataFront);
       dispatch({
         type: actionTypes.SIGN_UP,
+        data,
       });
     } catch (error) {
       dispatch({
         type: 'SIGN_UP_ERROR',
+      });
+    }
+  };
+}
+
+export function logout(userData) {
+  return async (dispatch) => {
+    // eslint-disable-next-line no-debugger
+    debugger;
+    try {
+      const { data } = await axios.post(urlLogout, userData);
+      dispatch({
+        type: actionTypes.LOGOUT,
+        user: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: 'LOGIN_ERROR',
       });
     }
   };

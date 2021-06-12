@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signup } from '../../redux/actions/actionCreatorsUser';
+import './register.scss';
 
 function Register() {
   const dispatch = useDispatch();
@@ -31,9 +32,9 @@ function Register() {
 
   return (
     <>
-      <h1>Register</h1>
       <form className="form-container" onSubmit={sendData}>
-        <p>(*) is required</p>
+        <h1>Register</h1>
+        <p className="info-required">(*) is required</p>
         <div className="form-floating">
           <label htmlFor="name">
             <p>Name: *</p>
@@ -83,13 +84,9 @@ function Register() {
           </label>
         </div>
         <div className="button">
-          <input className="button__item button__item--black" type="submit" name="sign-button" id="sign-button" value="sign up" />
+          <input className="button-submit" type="submit" name="sign-button" id="sign-button" value="sign up" />
         </div>
       </form>
-      <ul>
-        <li>{data.name}</li>
-        <li>{data.address}</li>
-      </ul>
     </>
   );
 }
