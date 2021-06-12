@@ -22,7 +22,7 @@
         }
         .sections-list {
             @include flex-content(flex, column, null, center);
-            visibility: hidden;
+            display: none ;
             z-index: 4;
             padding: 0;
             position: absolute;
@@ -39,10 +39,20 @@
                 border-bottom: 1px solid $color-white;
             }
         }
-    }
-    &__nav:hover {
-        .sections-list {
-            visibility: visible;
+        .block {
+            .sections-list {
+                display: block;
+            }
+        }
+        .hidden {
+            .sections-list {
+                display: none;
+            }
+        }
+        button{
+            border: none;
+            outline: none;
+            background-color: transparent;
         }
     }
     &__logo{

@@ -8,18 +8,17 @@ import { Link, useHistory } from 'react-router-dom';
 import Slider from 'react-slick';
 import { confirmAlert } from 'react-confirm-alert';
 import { loadProduct } from '../../../redux/actions/actionCreators';
-import { addToCart } from '../../../redux/actions/actionCreatorsCart';
 import favoriteEmpty from '../../../assets/heart-regular.svg';
 import favoriteSolid from '../../../assets/heart-solid.svg';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { toggleFavorite } from '../../../redux/actions/actionCreatorsFavorites';
+import toggleFavorite from '../../../redux/actions/actionCreatorsFavorites';
+import { toggleCart } from '../../../redux/actions/actionCreatorsCart';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './cameraDetail.scss';
-import findItem from '../ProductsList/findItem';
 
 function CameraDetail({
-  selectedProduct, dispatch, user, cartList,
+  selectedProduct, dispatch, user,
 }) {
   const { productId, section } = useParams();
   useEffect(() => {
@@ -59,7 +58,7 @@ function CameraDetail({
           type="button"
           className="favorite-button"
           onClick={() => dispatch(toggleFavorite(selectedProduct.isFavorite,
-            selectedProduct, user))}
+            selectedProduct, user, 'favorites'))}
         >
           <img
             src={selectedProduct.isFavorite
@@ -130,8 +129,7 @@ function CameraDetail({
         </div>
       </div>
       <div className="button-container">
-        {findItem(section, cartList, selectedProduct)
-
+        {selectedProduct.isOnCart
           ? (
             <button
               type="button"
@@ -146,7 +144,8 @@ function CameraDetail({
               <button
                 type="button"
                 className="button cart"
-                onClick={() => dispatch(addToCart(selectedProduct, user, cartList))}
+                onClick={() => dispatch(toggleCart(selectedProduct.isOnCart,
+                  selectedProduct, user, 'cart'))}
               >
                 <p>Add to cart</p>
               </button>
@@ -168,6 +167,7 @@ CameraDetail.propTypes = {
     arsenalFactory: PropTypes.string,
     year: PropTypes.string,
     isFavorite: PropTypes.bool,
+    isOnCart: PropTypes.bool,
     specifications: PropTypes.shape({
       lens: PropTypes.string,
       mount: PropTypes.string,
@@ -192,6 +192,8 @@ function mapStateToProps({
       ...selectedProduct,
       isFavorite: favorites[selectedProduct.section]
         ?.some((fav) => fav._id === selectedProduct._id),
+      isOnCart: cartList[selectedProduct.section]
+        ?.some((cart) => cart._id === selectedProduct._id),
     },
     user,
     cartList,

@@ -59,7 +59,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
                       <Link to={`/${product.section}/${product._id}`}>
                         <p className="title-model">{product.productModel}</p>
                       </Link>
-                      <p className="title-lens">{product.specifications.lens}</p>
+                      <p className="title-lens">{product?.specifications?.lens}</p>
                     </span>
                   </div>
                   <span>

@@ -20,7 +20,9 @@ function cartReducer(cartList = {}, action) {
       return {
         ...cartList,
         [action.product.section]: [
-          ...cartList,
+          ...findOnlySection(action.product.section, cartList).filter((
+            cartItem,
+          ) => cartItem._id !== action.product._id),
         ],
       };
 

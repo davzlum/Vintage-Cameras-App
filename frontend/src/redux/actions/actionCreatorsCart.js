@@ -1,19 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 import actionTypes from './actionTypes';
-import findSectionCart from '../../components/Products/ProductsList/finSectionCart';
 
 const url = process.env.REACT_APP_URL;
-
-export function addToCart(product, user, cart) {
-  return async (dispatch) => {
-    await axios.put(`${url}/user/${user.user._id}`, { cart: { ...cart, [product.section]: [...findSectionCart(product, user), product._id] } }, { headers: { Authorization: `Bearer ${user.token}` } });
-    dispatch({
-      type: actionTypes.ADD_PRODUCTS_TO_CART,
-      product,
-    });
-  };
-}
 
 export function loadCart() {
   return {
@@ -38,6 +27,20 @@ export function updateCart(product) {
     dispatch({
       type: actionTypes.UPDATE_PRODUCTS,
       product: data,
+    });
+  };
+}
+
+export function toggleCart(isOnCart, product, user, array) {
+  // eslint-disable-next-line no-debugger
+  debugger;
+  return async (dispatch) => {
+    await axios.put(`${url}/user/${user.user._id}`, { isOnCart, product, array }, { headers: { Authorization: `Bearer ${user.token}` } });
+    dispatch({
+      type: isOnCart
+        ? actionTypes.DELETE_CART_PRODUCT
+        : actionTypes.ADD_PRODUCTS_TO_CART,
+      product,
     });
   };
 }

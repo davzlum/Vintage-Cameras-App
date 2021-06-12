@@ -8,7 +8,7 @@ import { PropTypes } from 'prop-types';
 import { loadProducts } from '../../../redux/actions/actionCreators';
 import favoriteEmpty from '../../../assets/heart-regular.svg';
 import favoriteSolid from '../../../assets/heart-solid.svg';
-import { toggleFavorite } from '../../../redux/actions/actionCreatorsFavorites';
+import toggleFavorite from '../../../redux/actions/actionCreatorsFavorites';
 
 import('./index.scss');
 
@@ -44,7 +44,7 @@ function CamerasList({
               type="button"
               className="favorite-button"
               onClick={() => {
-                dispatch(toggleFavorite(product.isFavorite, product, user));
+                dispatch(toggleFavorite(product.isFavorite, product, user, 'favorites'));
               }}
             >
               <img

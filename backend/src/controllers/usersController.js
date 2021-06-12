@@ -61,17 +61,17 @@ function usersController() {
 
   async function updateById(req, res) {
     let updateData = req.body;
-    if(Object.keys(updateData).some(key => key === 'isFavorite')) {
-      if (updateData.isFavorite) {
+    if(Object.keys(updateData).some(key => key === 'isFavorite' || key ==='isOnCart')) {
+      if (updateData.isFavorite || updateData.isOnCart) {
         updateData = {
          ...updateData,
-          $pull: { [`favorites.${updateData.product.section}`]: updateData.product._id}
+          $pull: { [`${updateData.array}.${updateData.product.section}`]: updateData.product._id}
          
         }
       } else {
         updateData = {
       ...updateData,
-          $push: { [`favorites.${updateData.product.section}`]: updateData.product._id}
+          $push: { [`${updateData.array}.${updateData.product.section}`]: updateData.product._id}
         }
       }
     }
@@ -81,6 +81,7 @@ function usersController() {
         updateData,
         { new: true },
       );
+      console.log(updateData);
       res.json(updatedUser);
       console.log('asdasd',updatedUser)
     } catch (error) {

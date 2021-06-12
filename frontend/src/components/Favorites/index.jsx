@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import favoriteSolid from '../../assets/heart-solid.svg';
-import { toggleFavorite } from '../../redux/actions/actionCreatorsFavorites';
+import toggleFavorite from '../../redux/actions/actionCreatorsFavorites';
 
 function Favorites({
   dispatch, user, favorites,
@@ -29,7 +29,7 @@ function Favorites({
                 <img src={product.images[0]} alt={product.productModel} />
               </div>
             </Link>
-            <button type="button" className="favorite-button" onClick={() => dispatch(toggleFavorite(product.isFavorite, product, user))}>
+            <button type="button" className="favorite-button" onClick={() => dispatch(toggleFavorite(product.isFavorite, product, user, 'favorites'))}>
               <img src={favoriteSolid} alt="favorite" />
             </button>
           </li>
