@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import actionTypes from '../actions/actionTypes';
-import findOnlySection from '../../components/Products/ProductsList/findOnlySection';
+import returnProductSection from '../../shared/returnProductSection';
 
 function cartReducer(cartList = {}, action) {
   switch (action.type) {
@@ -11,7 +11,7 @@ function cartReducer(cartList = {}, action) {
       return {
         ...cartList,
         [action.product.section]: [
-          ...findOnlySection(action.product.section, cartList),
+          ...returnProductSection(action.product.section, cartList),
           action.product,
         ],
       };
@@ -20,7 +20,7 @@ function cartReducer(cartList = {}, action) {
       return {
         ...cartList,
         [action.product.section]: [
-          ...findOnlySection(action.product.section, cartList).filter((
+          ...returnProductSection(action.product.section, cartList).filter((
             cartItem,
           ) => cartItem._id !== action.product._id),
         ],
@@ -28,8 +28,10 @@ function cartReducer(cartList = {}, action) {
 
     case actionTypes.UPDATE_PRODUCTS:
       return {};
+
     case actionTypes.LOGIN:
       return action.user.user.cart;
+
     default:
       return cartList;
   }

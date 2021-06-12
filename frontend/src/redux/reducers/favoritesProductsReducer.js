@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import actionTypes from '../actions/actionTypes';
-import findOnlySection from '../../components/Products/ProductsList/findOnlySection';
+import returnProductSection from '../../shared/returnProductSection';
 
 function favoritesReducer(favorites = {}, action) {
   switch (action.type) {
@@ -8,18 +8,16 @@ function favoritesReducer(favorites = {}, action) {
       return {
         ...favorites,
         [action.product.section]: [
-          ...findOnlySection(action.product.section, favorites),
+          ...returnProductSection(action.product.section, favorites),
           action.product,
         ],
       };
 
     case actionTypes.DELETE_FAVORITE_PRODUCT:
-      // eslint-disable-next-line no-debugger
-      debugger;
       return {
         ...favorites,
         [action.product.section]: [
-          ...findOnlySection(action.product.section, favorites).filter((
+          ...returnProductSection(action.product.section, favorites).filter((
             favoriteItem,
           ) => favoriteItem._id !== action.product._id),
         ],
@@ -27,6 +25,7 @@ function favoritesReducer(favorites = {}, action) {
 
     case actionTypes.LOGIN:
       return action.user.user.favorites;
+
     default:
       return favorites;
   }
