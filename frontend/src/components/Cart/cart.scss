@@ -11,6 +11,7 @@
     &__product-box{
         height: 100%;
         border-bottom: 2px solid $color-corporative;
+        overflow: scroll;
     }
     &__total-cost{
         text-align: center;
