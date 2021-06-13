@@ -25,7 +25,7 @@ function Header({ cartList, dispatch, user }) {
         <header className="header">
           <ul className="header-container">
             <li className="header-container__nav">
-              <button type="button" className={state ? 'hidden' : 'block'} onClick={() => setState(!state)}>
+              <button type="button" className={state ? 'block' : 'hidden'} onClick={() => setState(!state)}>
                 <img src={nav} alt="navigation" />
                 <ul className="sections-list">
                   <li className="section-item"><Link to={`/${'cameras'}`}>Cameras</Link></li>
