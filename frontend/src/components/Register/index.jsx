@@ -30,8 +30,6 @@ function Register() {
     });
   };
 
-  // eslint-disable-next-line no-debugger
-  debugger;
   if (user === 'Signup successful') {
     confirmAlert({
       title: 'Register completed',
@@ -49,8 +47,6 @@ function Register() {
   }
 
   const sendData = (event) => {
-    // eslint-disable-next-line no-debugger
-    debugger;
     event.preventDefault();
     dispatch(signup(userData));
   };
