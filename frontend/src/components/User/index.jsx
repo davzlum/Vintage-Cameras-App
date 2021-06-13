@@ -7,6 +7,9 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { logout } from '../../redux/actions/actionCreatorsUser';
 import EditUser from './EditUser';
+import './user.scss';
+import EditLogo from '../../assets/edit-regular.svg';
+import CloseEdition from '../../assets/times-circle-solid.svg';
 
 export default function User() {
   const history = useHistory();
@@ -36,60 +39,63 @@ export default function User() {
 
   return (
     <>
-      <h1>
-        {user.name}
-        {' '}
-        profile
-      </h1>
-      <ul>
+      <div className="user-container">
+        <h1>
+          My profile
+        </h1>
         {state
           ? (
             <>
-              <div>
-                <p>
-                  Username:
-                  {' '}
-                  {user.username}
-                </p>
-                <p>
-                  Address:
-                  {' '}
-                  {user.address}
-                </p>
-                <p>
-                  City:
-                  {' '}
-                  {user.city}
-                </p>
-                <p>
-                  Postal Code:
-                  {' '}
-                  {user.cp}
-                </p>
-                <p>
-                  Phone:
-                  {' '}
-                  {user.phone}
-                </p>
-                <p>
-                  Email:
-                  {' '}
-                  {user.email}
-                </p>
-              </div>
-              <button type="button" onClick={() => setState(!state)}>Modify data</button>
+              <p className="user-container__item">
+                Name:
+                {' '}
+                <span>{user?.name}</span>
+              </p>
+              <p className="user-container__item">
+                Username:
+                {' '}
+                <span>{user?.username}</span>
+              </p>
+              <p className="user-container__item">
+                Address:
+                {' '}
+                <span>{user?.address}</span>
+              </p>
+              <p className="user-container__item">
+                City:
+                {' '}
+                <span>{user?.city}</span>
+              </p>
+              <p className="user-container__item">
+                Postal Code:
+                {' '}
+                <span>{user?.cp}</span>
+              </p>
+              <p className="user-container__item">
+                Phone:
+                {' '}
+                <span>{user?.phone}</span>
+              </p>
+              <p className="user-container__item">
+                Email:
+                {' '}
+                <span>{user?.email}</span>
+              </p>
+              <button className="button button__modify" type="button" onClick={() => setState(!state)}><img src={EditLogo} alt="edition" /></button>
             </>
           )
           : (
             <>
               <EditUser onAction={() => setState(!state)} />
-              <button type="button" onClick={() => setState(!state)}>Go back</button>
+              <button className="button button__cancel" type="button" onClick={() => setState(!state)}><img src={CloseEdition} alt="closeEdition" /></button>
             </>
           )}
-        <li><Link to="/favorites">My favorite products</Link></li>
-        <li><Link to="/cart">My cart</Link></li>
-        <li><button type="button" onClick={logMeOutNotification}>Logout</button></li>
-      </ul>
+        <ul className="nav-user">
+          <li className="nav-user__item"><Link to="/favorites">My FAVORITES</Link></li>
+          <li className="nav-user__item"><Link to="/cart">My CART</Link></li>
+          <li className="nav-user__button"><button className="button-logout" type="button" onClick={logMeOutNotification}>Logout</button></li>
+        </ul>
+      </div>
     </>
   );
 }

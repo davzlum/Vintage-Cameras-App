@@ -94,9 +94,7 @@ function usersController() {
         updateData,
         { new: true },
       );
-      console.log(updateData);
       res.json(updatedUser);
-      console.log('asdasd',updatedUser)
     } catch (error) {
       debug(error);
       res.send(error);

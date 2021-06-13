@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { confirmAlert } from 'react-confirm-alert';
-// import 'react-confirm-alert/src/react-confirm-alert.css';
 import { updateUser } from '../../../redux/actions/actionCreatorsUser';
+import SaveEdition from '../../../assets/check-circle-solid.svg';
 
 // eslint-disable-next-line react/prop-types
 export default function EditUser({ onAction }) {
@@ -29,8 +28,6 @@ export default function EditUser({ onAction }) {
   };
 
   const sendData = (event) => {
-    // eslint-disable-next-line no-debugger
-    debugger;
     event.preventDefault();
     const newData = { ...user.user, ...userData };
     dispatch(updateUser(newData));
@@ -39,8 +36,8 @@ export default function EditUser({ onAction }) {
 
   return (
     <>
-      <form onSubmit={sendData}>
-        <div className="form-floating">
+      <form>
+        <div className="user-container__item">
           <label htmlFor="name">
             <p>
               Name:
@@ -50,7 +47,7 @@ export default function EditUser({ onAction }) {
 
           </label>
         </div>
-        <div className="form-floating">
+        <div className="user-container__item">
           <label htmlFor="username">
             <p>
               Username:
@@ -60,7 +57,7 @@ export default function EditUser({ onAction }) {
 
           </label>
         </div>
-        <div className="form-floating">
+        <div className="user-container__item">
           <label htmlFor="address">
             <p>
               Address:
@@ -70,7 +67,7 @@ export default function EditUser({ onAction }) {
 
           </label>
         </div>
-        <div className="form-floating">
+        <div className="user-container__item">
           <label htmlFor="city">
             <p>
               City:
@@ -80,7 +77,7 @@ export default function EditUser({ onAction }) {
 
           </label>
         </div>
-        <div className="form-floating">
+        <div className="user-container__item">
           <label htmlFor="postal">
             <p>
               Postal Code:
@@ -90,7 +87,7 @@ export default function EditUser({ onAction }) {
 
           </label>
         </div>
-        <div className="form-floating">
+        <div className="user-container__item">
           <label htmlFor="phone">
             <p>
               Phone:
@@ -100,7 +97,7 @@ export default function EditUser({ onAction }) {
 
           </label>
         </div>
-        <div className="form-floating">
+        <div className="user-container__item">
           <label htmlFor="email">
             <p>
               Email:
@@ -110,9 +107,9 @@ export default function EditUser({ onAction }) {
 
           </label>
         </div>
-        <div className="button">
-          <input className="button-submit" type="submit" name="sign-button" id="sign-button" value="Update" />
-        </div>
+        <button onClick={sendData} className="button button__submit" type="button" name="sign-button" id="sign-button" value="Update">
+          <img src={SaveEdition} alt="saveEdition" />
+        </button>
       </form>
     </>
   );

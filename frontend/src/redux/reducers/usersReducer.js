@@ -12,8 +12,6 @@ function usersReducer(user = {}, action) {
       return action.user;
 
     case actionTypes.UPDATE_USER:
-      // eslint-disable-next-line no-debugger
-      debugger;
       return { ...user, user: { ...action.newUser } };
 
     default:

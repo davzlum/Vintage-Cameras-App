@@ -57,8 +57,6 @@ export function logout(userData) {
 
 export function updateUser(userData) {
   return async (dispatch) => {
-    // eslint-disable-next-line no-debugger
-    debugger;
     try {
       const { data } = await axios.put(`${urlUser}/user/${userData._id}`, userData);
       dispatch({
