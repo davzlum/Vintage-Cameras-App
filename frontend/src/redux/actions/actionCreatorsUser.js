@@ -9,6 +9,8 @@ const urlSignUp = process.env.REACT_APP_SIGN_UP_URL;
 export function login(email, password) {
   return async (dispatch) => {
     try {
+      // eslint-disable-next-line no-debugger
+      debugger;
       const { data } = await axios.post(urlLogin, { email, password });
       dispatch({
         type: actionTypes.LOGIN,
@@ -25,12 +27,10 @@ export function login(email, password) {
 export function signup(dataFront) {
   return async (dispatch) => {
     try {
-      // eslint-disable-next-line no-debugger
-      debugger;
       const { data } = await axios.post(urlSignUp, dataFront);
       dispatch({
         type: actionTypes.SIGN_UP,
-        data,
+        user: data,
       });
     } catch (error) {
       dispatch({

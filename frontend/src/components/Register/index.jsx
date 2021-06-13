@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { confirmAlert } from 'react-confirm-alert';
 import { signup } from '../../redux/actions/actionCreatorsUser';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import './register.scss';
 
 function Register() {
   const dispatch = useDispatch();
-  const [data, setData] = useState({
+  const user = useSelector((store) => store.user);
+  const history = useHistory();
+  const [userData, setUserData] = useState({
     name: '',
     username: '',
     email: '',
@@ -19,15 +24,35 @@ function Register() {
   });
 
   const handleInputChange = (event) => {
-    setData({
-      ...data,
+    setUserData({
+      ...userData,
       [event.target.name]: event.target.value,
     });
   };
 
+  // eslint-disable-next-line no-debugger
+  debugger;
+  if (user === 'Signup successful') {
+    confirmAlert({
+      title: 'Register completed',
+      message: 'Login with your email and password',
+      buttons: [
+        {
+          label: 'Ok',
+          onClick: () => {
+            const path = '/login';
+            history.push(path);
+          },
+        },
+      ],
+    });
+  }
+
   const sendData = (event) => {
+    // eslint-disable-next-line no-debugger
+    debugger;
     event.preventDefault();
-    dispatch(signup(data));
+    dispatch(signup(userData));
   };
 
   return (
