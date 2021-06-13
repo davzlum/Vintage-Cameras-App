@@ -1,119 +1,28 @@
-const passport = require('passport');
 const { Router } = require('express');
-const jwt = require('jsonwebtoken');
-const User = require('./../model/userModel');
+const usersController = require('../controllers/usersController')();
+const passport = require('passport');
 
-let refreshTokens = [];
 const authRoutes = Router();
 
-authRoutes.post(
-  '/signup',
-  passport.authenticate('signup', { session: false }),
-  async (req, res) => {
-    res.json({
-      message: 'Signup successful',
-      user: req.user,
-    });
-  },
-);
+authRoutes.post('/signup', passport.authenticate('signup', { session: false }), 
+usersController.createOne);
 
-authRoutes.post(
-  '/login',
-  async (req, res, next) => {
-    passport.authenticate(
-      'login',
-      async (err, user) => {
-        try {
-          if (err || !user) {
-            const error = new Error('An error occurred.');
+authRoutes.post('/login', usersController.login);
 
-            return next(error);
-          }
+authRoutes.post('/token', usersController.token);
 
-          return req.login(
-            user,
-            { session: false },
-            async (error) => {
-              if (error) return next(error);
+authRoutes.post('/logout', usersController.logout);
 
-              const data = { _id: user._id, email: user.email };
-              const token = jwt.sign(
-                { user: data },
-                process.env.JWT_SECRET,
-                // { expiresIn: '1m' },
-              );
-              const refreshToken = jwt.sign(
-                { user: data },
-                process.env.JWT_SECRET,
-              );
+authRoutes.get('/profile', usersController.profile);
 
-              const userById = await User.findById(
-                user._id
-              ).populate('cart').populate('favorites');
+authRoutes
+.route('/user')
+.get(usersController.getAllUsers)
 
-              refreshTokens.push(refreshToken);
-
-              return res.json({
-                token,
-                refreshToken,
-                user: userById
-              });
-            },
-          );
-        } catch (error) {
-          return next(error);
-        }
-      },
-    )(req, res, next);
-  },
-);
-
-authRoutes.post('/token', (req, res) => {
-  const { token } = req.body;
-
-  if (!token) {
-    return res.sendStatus(401);
-  }
-
-  if (!refreshTokens.includes(token)) {
-    return res.sendStatus(403);
-  }
-
-  return jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      return res.sendStatus(403);
-    }
-
-    const data = { _id: user._id, email: user.email };
-
-    const accessToken = jwt.sign(
-      { user: data },
-      process.env.JWT_SECRET,
-      // { expiresIn: '240m' },
-    );
-
-    return res.json({
-      accessToken,
-    });
-  });
-});
-
-authRoutes.post('/logout', (req, res) => {
-  const { token } = req.body;
-  refreshTokens = refreshTokens.filter((current) => current !== token);
-
-  res.send('Logout successful');
-});
-
-authRoutes.get(
-  '/profile',
-  (req, res) => {
-    res.json({
-      message: 'You made it to the secure route',
-      user: req.user,
-      token: req.headers.authorization,
-    });
-  },
-);
+authRoutes
+.route('/user/:userId')
+.get(usersController.getById)
+.put(usersController.updateById)
+.delete(usersController.deleteById);
 
 module.exports = authRoutes;

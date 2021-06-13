@@ -1,26 +1,19 @@
+/* eslint-disable no-debugger */
 /* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
 const url = process.env.REACT_APP_URL;
 
-export function addToFavorites(product, user, favorites) {
+export default function toggleFavorite(isFavorite, product, user, array) {
   return async (dispatch) => {
-    await axios.put(`${url}/user/${user.user._id}`, { favorites: [...favorites, product._id] }, { headers: { Authorization: `Bearer ${user.token}` } });
+    await axios.put(`${url}/user/${user.user._id}`, { isFavorite, product, array }, { headers: { Authorization: `Bearer ${user.token}` } });
+    debugger;
     dispatch({
-      type: actionTypes.ADD_PRODUCTS_TO_FAVORITES,
+      type: isFavorite
+        ? actionTypes.DELETE_FAVORITE_PRODUCT
+        : actionTypes.ADD_PRODUCTS_TO_FAVORITES,
       product,
-    });
-  };
-}
-
-export function deleteFromFavorites(product, user, favorites) {
-  const newFav = favorites.filter((favoriteItem) => favoriteItem._id !== product._id);
-  return async (dispatch) => {
-    await axios.put(`${url}/user/${user.user._id}`, { favorites: newFav }, { headers: { Authorization: `Bearer ${user.token}` } });
-    dispatch({
-      type: actionTypes.DELETE_FAVORITE_PRODUCT,
-      newFav,
     });
   };
 }

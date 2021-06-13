@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Camera = mongoose.model('Camera');
+const Film = mongoose.model('Film');
+const Lens = mongoose.model('Lens');
+const md5 = require('md5');
+
 
 const userSchema = mongoose.Schema({
   name: String,
@@ -11,12 +15,22 @@ const userSchema = mongoose.Schema({
   cp: Number,
   phone: Number,
   password: String,
-  favorites: [{ type: Schema.ObjectId, ref: "Camera" }],
-  cart: [{ type: Schema.ObjectId, ref: "Camera" }],
+  favorites: {
+    cameras: [{type: Schema.ObjectId, ref: 'Camera' }],
+    lenses: [{type: Schema.ObjectId, ref: 'Lens' }],
+    films: [{type: Schema.ObjectId, ref: 'Film' }],
+  },
+  cart: {
+    cameras: [{type: Schema.ObjectId, ref: 'Camera' }],
+    lenses: [{type: Schema.ObjectId, ref: 'Lens' }],
+    films: [{type: Schema.ObjectId, ref: 'Film' }],
+  },
+  
 });
 
 userSchema.methods.isValidPassword = function isValidPassword(password) {
-  return password === this.password;
+  // return password === this.password;
+  return md5(password) === this.password;
 };
 
 module.exports = mongoose.model('User', userSchema);

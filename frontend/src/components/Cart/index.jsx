@@ -2,13 +2,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Link } from 'react-router-dom';
 import {
-  deleteFromCart, updateCart,
+  toggleCart, updateCart,
 } from '../../redux/actions/actionCreatorsCart';
 import './cart.scss';
 
 function ShoppingCart({ cartList, dispatch, user }) {
+  // eslint-disable-next-line no-debugger
+  debugger;
   function getTotalCost(total, cost) {
     return total + cost;
   }
@@ -23,9 +27,26 @@ function ShoppingCart({ cartList, dispatch, user }) {
     });
   }
 
+  const submit = (product) => {
+    confirmAlert({
+      title: 'Confirm to remove',
+      message: 'Are you sure you want to remove this product from your cart',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => dispatch(toggleCart(product.isOnCart,
+            product, user, 'cart')),
+        },
+        {
+          label: 'No',
+        },
+      ],
+    });
+  };
+
   return (
     <>
-      <h1>Cart</h1>
+      <h1 className="section-title">Cart</h1>
       <div className="shopping-cart">
         <div className="shopping-cart__product-box">
           <ul className="shopping-cart__product-list">
@@ -35,13 +56,13 @@ function ShoppingCart({ cartList, dispatch, user }) {
 
                   <div className="shopping-cart__left">
                     <div className="image-container">
-                      <img src={product?.images[0]} alt={product.cameraModel} />
+                      <img src={product?.images[0]} alt={product.productModel} />
                     </div>
                     <span className="information">
                       <Link to={`/${product.section}/${product._id}`}>
-                        <p className="title-model">{product.cameraModel}</p>
+                        <p className="title-model">{product.productModel}</p>
                       </Link>
-                      <p className="title-lens">{product.specifications.lens}</p>
+                      <p className="title-lens">{product?.specifications?.lens}</p>
                     </span>
                   </div>
                   <span>
@@ -49,7 +70,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
                       {product.price}
                       {' €  '}
                     </p>
-                    <button type="button" className="button-remove" data-testid="button-remove" onClick={() => dispatch(deleteFromCart(product, user, cartList))}> </button>
+                    <button type="button" className="button-remove" data-testid="button-remove" onClick={() => submit(product)}> </button>
                   </span>
                 </li>
               )) : <p>No products at cart</p>}
@@ -80,8 +101,14 @@ ShoppingCart.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ cartList, user }) {
-  return { cartList, user };
+function mapStateToProps({ cartList: { cameras, lenses, films }, user }) {
+  return {
+    cartList: [...cameras, ...lenses, ...films].map((product) => ({
+      ...product,
+      isOnCart: true,
+    })),
+    user,
+  };
 }
 
 export default connect(mapStateToProps)(ShoppingCart);

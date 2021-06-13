@@ -10,8 +10,8 @@ const filmSchema = mongoose.Schema({
   description: String,
   price: Number,
   images: [String],
-  favState: Boolean,
   format: Number,
+  section: String,
 });
 
 module.exports = mongoose.model('Film', filmSchema);

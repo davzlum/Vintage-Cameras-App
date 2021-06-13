@@ -3,8 +3,12 @@
 .img-container{
     height: 250px;
     img{
-        width: 100vw;
+        width: 100%;
     }
+}
+
+.section-title{
+    margin-left: 30px;
 }
 
 .slick-dots li button:before {

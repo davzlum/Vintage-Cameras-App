@@ -4,30 +4,32 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import favoriteSolid from '../../assets/heart-solid.svg';
-import { deleteFromFavorites } from '../../redux/actions/actionCreatorsFavorites';
+import toggleFavorite from '../../redux/actions/actionCreatorsFavorites';
 
 function Favorites({
   dispatch, user, favorites,
 }) {
+  // eslint-disable-next-line no-debugger
+  debugger;
   return (
     <>
-      <h1>Favorites</h1>
+      <h1 className="section-title">Favorites</h1>
       <ul className="cameras">
         {favorites.map((product) => (
           <li className="cameras__item">
-            <Link to={`/cameras/${product._id}`}>
+            <Link to={`/${product.section}/${product._id}`}>
               <div className="item-info">
-                <span>{product.cameraModel}</span>
+                <span>{product.productModel}</span>
                 <span>
                   {product.price}
                   €
                 </span>
               </div>
               <div className="item-image">
-                <img src={product.images[0]} alt={product.cameraModel} />
+                <img src={product.images[0]} alt={product.productModel} />
               </div>
             </Link>
-            <button type="button" className="favorite-button" onClick={() => dispatch(deleteFromFavorites(product, user, favorites))}>
+            <button type="button" className="favorite-button" onClick={() => dispatch(toggleFavorite(product.isFavorite, product, user, 'favorites'))}>
               <img src={favoriteSolid} alt="favorite" />
             </button>
           </li>
@@ -47,10 +49,13 @@ Favorites.propTypes = {
   favorites: PropTypes.shape([]).isRequired,
 };
 
-function mapStateToProps({ user, favorites }) {
+function mapStateToProps({ user, favorites: { cameras, lenses, films } }) {
   return {
     user,
-    favorites,
+    favorites: [...cameras, ...lenses, ...films].map((product) => ({
+      ...product,
+      isFavorite: true,
+    })),
   };
 }
 

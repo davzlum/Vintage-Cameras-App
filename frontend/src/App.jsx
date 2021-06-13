@@ -6,15 +6,17 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import CamerasList from './components/cameras/CamerasList';
-import CameraDetail from './components/cameras/CameraDetail';
+import CamerasList from './components/Products/ProductsList';
+import CameraDetail from './components/Products/ProductDetail';
 import Header from './components/common/Header';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
+import User from './components/User';
 import Cart from './components/Cart';
 import configureStore from './redux/store';
 import './App.css';
 import Favorites from './components/Favorites';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -24,10 +26,12 @@ function App() {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/user" component={User} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/favorites" component={Favorites} />
-          <Route exact path="/cameras" component={CamerasList} />
-          <Route exact path="/cameras/:cameraId" component={CameraDetail} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/:section" component={CamerasList} />
+          <Route exact path="/:section/:productId" component={CameraDetail} />
           <Redirect to="/" />
         </Switch>
       </Router>

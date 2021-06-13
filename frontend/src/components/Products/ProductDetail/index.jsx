@@ -4,36 +4,71 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Slider from 'react-slick';
+import { confirmAlert } from 'react-confirm-alert';
 import { loadProduct } from '../../../redux/actions/actionCreators';
-import { addToCart } from '../../../redux/actions/actionCreatorsCart';
 import favoriteEmpty from '../../../assets/heart-regular.svg';
 import favoriteSolid from '../../../assets/heart-solid.svg';
-import { addToFavorites, deleteFromFavorites } from '../../../redux/actions/actionCreatorsFavorites';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import toggleFavorite from '../../../redux/actions/actionCreatorsFavorites';
+import { toggleCart } from '../../../redux/actions/actionCreatorsCart';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './cameraDetail.scss';
 
 function CameraDetail({
-  selectedProduct, dispatch, user, cartList, favorites,
+  selectedProduct, dispatch, user,
 }) {
-  const { cameraId } = useParams();
+  const { productId, section } = useParams();
   useEffect(() => {
-    dispatch(loadProduct(cameraId, 'cameras'));
+    dispatch(loadProduct(productId, section, user));
   }, []);
   const renderSlides = () => selectedProduct?.images?.map((img) => <div className="img-container"><img src={img} alt="images" /></div>);
+  const history = useHistory();
+  const submit = () => {
+    confirmAlert({
+      title: 'Your product is already in Cart',
+      message: 'Do you want to navigate to your cart?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            const path = '/cart';
+            history.push(path);
+          },
+        },
+        {
+          label: 'No',
+        },
+      ],
+    });
+  };
 
   return (
     <div>
-      <h1>Camera detail</h1>
+      <h1 className="section-title">
+        {section}
+        {' '}
+        detail
+      </h1>
       <div className="camera-detail">
         <Slider dots>{renderSlides()}</Slider>
-        <button type="button" className="favorite-button" onClick={() => dispatch(favorites.find((favorite) => selectedProduct._id === favorite._id) ? deleteFromFavorites(selectedProduct, user, favorites) : addToFavorites(selectedProduct, user, favorites))}>
-          <img src={favorites.find((favorite) => selectedProduct._id === favorite._id) ? favoriteSolid : favoriteEmpty} alt="favorite" />
+        <button
+          type="button"
+          className="favorite-button"
+          onClick={() => dispatch(toggleFavorite(selectedProduct.isFavorite,
+            selectedProduct, user, 'favorites'))}
+        >
+          <img
+            src={selectedProduct.isFavorite
+              ? favoriteSolid
+              : favoriteEmpty}
+            alt="favorite"
+          />
         </button>
         <div className="model-price">
-          <h2>{selectedProduct?.cameraModel}</h2>
+          <h2>{selectedProduct?.productModel}</h2>
           <h2>
             {selectedProduct?.price}
             €
@@ -94,17 +129,29 @@ function CameraDetail({
         </div>
       </div>
       <div className="button-container">
-        <button
-          type="button"
-          disabled={cartList.find((cartProduct) => selectedProduct._id === cartProduct._id)}
-          className="button cart"
-          onClick={() => dispatch(addToCart(selectedProduct, user, cartList))}
-        >
-          <Link to="/cart">
-            Add to cart
-          </Link>
-        </button>
-        <button type="button" className="button info"><Link to="/cameras">Go back</Link></button>
+        {selectedProduct.isOnCart
+          ? (
+            <button
+              type="button"
+              className="button cart"
+              onClick={submit}
+            >
+              <p>Add to cart</p>
+            </button>
+          )
+          : (
+            <Link to="/cart">
+              <button
+                type="button"
+                className="button cart"
+                onClick={() => dispatch(toggleCart(selectedProduct.isOnCart,
+                  selectedProduct, user, 'cart'))}
+              >
+                <p>Add to cart</p>
+              </button>
+            </Link>
+          )}
+        <button type="button" className="button info"><Link to={`/${section}`}>Go back</Link></button>
       </div>
     </div>
   );
@@ -113,12 +160,14 @@ function CameraDetail({
 CameraDetail.propTypes = {
   selectedProduct: PropTypes.shape({
     _id: PropTypes.string,
-    cameraModel: PropTypes.string,
+    productModel: PropTypes.string,
     images: PropTypes.shape([]).isRequired,
     history: PropTypes.string,
     price: PropTypes.number,
     arsenalFactory: PropTypes.string,
     year: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    isOnCart: PropTypes.bool,
     specifications: PropTypes.shape({
       lens: PropTypes.string,
       mount: PropTypes.string,
@@ -130,8 +179,8 @@ CameraDetail.propTypes = {
     }).isRequired,
   }).isRequired,
   user: PropTypes.shape({}).isRequired,
-  cartList: PropTypes.shape([]).isRequired,
-  favorites: PropTypes.shape([]).isRequired,
+  cartList: PropTypes.shape({}).isRequired,
+  favorites: PropTypes.shape({}).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
@@ -139,7 +188,13 @@ function mapStateToProps({
   selectedProduct, user, cartList, favorites,
 }) {
   return {
-    selectedProduct,
+    selectedProduct: {
+      ...selectedProduct,
+      isFavorite: favorites[selectedProduct.section]
+        ?.some((fav) => fav._id === selectedProduct._id),
+      isOnCart: cartList[selectedProduct.section]
+        ?.some((cart) => cart._id === selectedProduct._id),
+    },
     user,
     cartList,
     favorites,

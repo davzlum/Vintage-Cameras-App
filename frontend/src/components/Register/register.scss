@@ -1,0 +1,46 @@
+@import './../../style/color';
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $color-corporative;
+    padding: 30px;
+    margin: 10px;
+    border-radius: 20px;
+    color: $color-white;
+    .info-required{
+        width: 100%;
+        text-align: left;
+    }
+    .form-floating{
+        width: 100%;
+        margin: 10px 0;
+        input{
+            width: 100%;
+            padding: 5px 20px;
+            border-radius: 10px;
+            outline: none;
+            border: none;
+            margin-top: 5px;
+            font-size: 18px;
+        }
+        p{
+            font-size: 20px;
+        }
+    }
+}
+.form-container
+.button-submit{
+    padding: 8px 20px;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    color: $color-white;
+    font-size: 20px;
+    border-radius: 30px;
+    font-weight: 400;
+    margin: 20px 0;
+    width: 120px;
+    background-color: $color-dark;
+}

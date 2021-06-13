@@ -1,8 +1,12 @@
 @import './../../style/color';
 
+.section-title{
+    margin-left: 30px;
+}
+
 .shopping-cart{
     width: calc(100vw - 20px);
-    margin: 10px;
+    margin: 0 10px;
     display: flex;
     flex-direction: column;
     border-top: 2px solid $color-corporative;
@@ -11,6 +15,7 @@
     &__product-box{
         height: 100%;
         border-bottom: 2px solid $color-corporative;
+        overflow: scroll;
     }
     &__total-cost{
         text-align: center;
@@ -26,6 +31,7 @@
     &__product-list{
         list-style: none;
         margin:0;
+        padding: 0 3px;
     }
     &__price{
         font-size: 20px;
