@@ -4,7 +4,6 @@ const debug = require('debug')('app');
 const cors = require('cors');
 const morgan = require('morgan');
 const productsRoute = require('./routes/productsRoute');
-const usersRoute = require('./routes/usersRoute');
 const passport = require('passport');
 const authRoutes = require('./routes/auth.routes');
 
@@ -24,12 +23,6 @@ require('./ddbb/mongoose.config');
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', authRoutes);
-
-app.use(
-  '/user',
-  passport.authenticate('jwt', { session: false }),
-  usersRoute,
-  );
   
 app.use(
     '/products', 

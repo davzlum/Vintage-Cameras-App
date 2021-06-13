@@ -45,10 +45,10 @@ export function logout(userData) {
     // eslint-disable-next-line no-debugger
     debugger;
     try {
-      const { data } = await axios.post(urlLogout, userData);
+      await axios.post(urlLogout, userData);
       dispatch({
         type: actionTypes.LOGOUT,
-        user: data,
+        user: {},
       });
     } catch (error) {
       dispatch({
