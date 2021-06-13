@@ -82,7 +82,7 @@ export default function User() {
           )
           : (
             <>
-              <EditUser />
+              <EditUser onAction={() => setState(!state)} />
               <button type="button" onClick={() => setState(!state)}>Go back</button>
             </>
           )}

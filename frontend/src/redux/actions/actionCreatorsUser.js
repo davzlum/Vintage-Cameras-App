@@ -60,10 +60,10 @@ export function updateUser(userData) {
     // eslint-disable-next-line no-debugger
     debugger;
     try {
-      const { data } = await axios.put(`${urlUser}/user/${userData.user._id}`, userData);
+      const { data } = await axios.put(`${urlUser}/user/${userData._id}`, userData);
       dispatch({
         type: actionTypes.UPDATE_USER,
-        user: data,
+        newUser: data,
       });
     } catch (error) {
       dispatch({

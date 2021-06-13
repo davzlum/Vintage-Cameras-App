@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 // import 'react-confirm-alert/src/react-confirm-alert.css';
 import { updateUser } from '../../../redux/actions/actionCreatorsUser';
 
-export default function EditUser() {
+// eslint-disable-next-line react/prop-types
+export default function EditUser({ onAction }) {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const [userData, setUserData] = useState({
@@ -31,8 +32,9 @@ export default function EditUser() {
     // eslint-disable-next-line no-debugger
     debugger;
     event.preventDefault();
-    const newData = { ...user.user, userData };
+    const newData = { ...user.user, ...userData };
     dispatch(updateUser(newData));
+    onAction();
   };
 
   return (
