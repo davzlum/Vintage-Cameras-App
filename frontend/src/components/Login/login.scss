@@ -22,6 +22,9 @@
             label{
                 @include flex-content(flex, column, null, center);
             }
+            input{
+                font-size: 16px;
+            }
             margin:10px 0;      
             color: $color-white;
             font-size: 20px;
