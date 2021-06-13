@@ -2,6 +2,7 @@
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
+const urlUser = process.env.REACT_APP_URL;
 const urlLogin = process.env.REACT_APP_LOGIN_URL;
 const urlLogout = process.env.REACT_APP_LOGOUT_URL;
 const urlSignUp = process.env.REACT_APP_SIGN_UP_URL;
@@ -9,8 +10,6 @@ const urlSignUp = process.env.REACT_APP_SIGN_UP_URL;
 export function login(email, password) {
   return async (dispatch) => {
     try {
-      // eslint-disable-next-line no-debugger
-      debugger;
       const { data } = await axios.post(urlLogin, { email, password });
       dispatch({
         type: actionTypes.LOGIN,
@@ -42,13 +41,29 @@ export function signup(dataFront) {
 
 export function logout(userData) {
   return async (dispatch) => {
-    // eslint-disable-next-line no-debugger
-    debugger;
     try {
       await axios.post(urlLogout, userData);
       dispatch({
         type: actionTypes.LOGOUT,
         user: {},
+      });
+    } catch (error) {
+      dispatch({
+        type: 'LOGIN_ERROR',
+      });
+    }
+  };
+}
+
+export function updateUser(userData) {
+  return async (dispatch) => {
+    // eslint-disable-next-line no-debugger
+    debugger;
+    try {
+      const { data } = await axios.put(`${urlUser}/user/${userData.user._id}`, userData);
+      dispatch({
+        type: actionTypes.UPDATE_USER,
+        user: data,
       });
     } catch (error) {
       dispatch({

@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // import { confirmAlert } from 'react-confirm-alert';
 // import 'react-confirm-alert/src/react-confirm-alert.css';
-// import { updateUser } from '../../../redux/actions/actionCreatorsUser';
+import { updateUser } from '../../../redux/actions/actionCreatorsUser';
 
 export default function EditUser() {
-  const { user } = useSelector((store) => store.user);
-  //   const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
-    name: user.name,
-    username: user.username,
-    email: user.email,
-    address: user.address,
-    city: user.city,
-    cp: user.cp,
-    phone: user.phone,
-    password: user.password,
-    favorites: user.favorites,
-    cart: user.cart,
+    name: user.user.name,
+    username: user.user.username,
+    email: user.user.email,
+    address: user.user.address,
+    city: user.user.city,
+    cp: user.user.cp,
+    phone: user.user.phone,
+    password: user.user.password,
+    favorites: user.user.favorites,
+    cart: user.user.cart,
   });
 
   const handleInputChange = (event) => {
@@ -28,8 +28,11 @@ export default function EditUser() {
   };
 
   const sendData = (event) => {
+    // eslint-disable-next-line no-debugger
+    debugger;
     event.preventDefault();
-    // dispatch(updateUser(userData));
+    const newData = { ...user.user, userData };
+    dispatch(updateUser(newData));
   };
 
   return (
