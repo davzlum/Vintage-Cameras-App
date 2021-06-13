@@ -46,7 +46,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
 
   return (
     <>
-      <h1>Cart</h1>
+      <h1 className="section-title">Cart</h1>
       <div className="shopping-cart">
         <div className="shopping-cart__product-box">
           <ul className="shopping-cart__product-list">

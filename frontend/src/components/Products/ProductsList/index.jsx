@@ -22,7 +22,7 @@ function CamerasList({
   }, [section]);
   return (
     <>
-      <h1>{section}</h1>
+      <h1 className="section-title">{section}</h1>
       <ul className="cameras">
         {products.map((product) => (
           <li className="cameras__item">

@@ -13,7 +13,7 @@ function Favorites({
   debugger;
   return (
     <>
-      <h1>Favorites</h1>
+      <h1 className="section-title">Favorites</h1>
       <ul className="cameras">
         {favorites.map((product) => (
           <li className="cameras__item">
