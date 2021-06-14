@@ -6,7 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Link } from 'react-router-dom';
 import {
-  toggleCart, updateCart,
+  toggleCart,
 } from '../../redux/actions/actionCreatorsCart';
 import './cart.scss';
 
@@ -18,12 +18,13 @@ function ShoppingCart({ cartList, dispatch, user }) {
     const total = cartList.map((x) => x.price * 1);
     return total.reduce(getTotalCost);
   }
-  function buyCartList() {
-    cartList.forEach((product) => {
-      const updatedProduct = { ...product, stock: product.stock - product.quantity };
-      dispatch(updateCart(updatedProduct));
-    });
-  }
+
+  // function buyCartList() {
+  //   cartList.forEach((product) => {
+  //     const updatedProduct = { ...product, stock: product.stock - product.quantity };
+  //     dispatch(updateCart(updatedProduct));
+  //   });
+  // }
 
   const submit = (product) => {
     confirmAlert({
@@ -68,7 +69,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
                       {product.price}
                       {' €  '}
                     </p>
-                    <button type="button" className="button-remove" data-testid="button-remove" onClick={() => submit(product)}> </button>
+                    <button type="button" data-testid="button-remove" className="button-remove" onClick={() => submit(product)}> </button>
                   </span>
                 </li>
               )) : <p>No products at cart</p>}
@@ -86,7 +87,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
         </div>
         <div className="button-container">
           <Link to="/"><button type="button" data-testid="button-continue" className="continue">Continue</button></Link>
-          <button type="button" data-testid="button-buy" className="buy" onClick={() => buyCartList()}>Buy</button>
+          <button type="button" data-testid="button-buy" className="buy">Buy</button>
         </div>
       </div>
     </>
