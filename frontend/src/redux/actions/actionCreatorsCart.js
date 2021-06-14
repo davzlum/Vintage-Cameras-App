@@ -12,11 +12,17 @@ export function loadCart() {
 
 export function updateCart(product) {
   return async (dispatch) => {
-    const { data } = await axios.put(`${url}/${product._id}`, product);
-    dispatch({
-      type: actionTypes.UPDATE_PRODUCTS,
-      product: data,
-    });
+    try {
+      const { data } = await axios.put(`${url}/${product._id}`, product);
+      dispatch({
+        type: actionTypes.UPDATE_PRODUCTS,
+        product: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: actionTypes.UPDATE_PRODUCTS_ERROR,
+      });
+    }
   };
 }
 

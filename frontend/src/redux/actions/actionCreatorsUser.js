@@ -17,7 +17,7 @@ export function login(email, password) {
       });
     } catch (error) {
       dispatch({
-        type: 'LOGIN_ERROR',
+        type: actionTypes.LOGIN_ERROR,
       });
     }
   };
@@ -33,7 +33,7 @@ export function signup(dataFront) {
       });
     } catch (error) {
       dispatch({
-        type: 'SIGN_UP_ERROR',
+        type: actionTypes.SIGN_UP_ERROR,
       });
     }
   };
@@ -49,7 +49,7 @@ export function logout(userData) {
       });
     } catch (error) {
       dispatch({
-        type: 'LOGIN_ERROR',
+        type: actionTypes.LOGOUT_ERROR,
       });
     }
   };
@@ -65,7 +65,7 @@ export function updateUser(userData) {
       });
     } catch (error) {
       dispatch({
-        type: 'LOGIN_ERROR',
+        type: actionTypes.UPDATE_USER_ERROR,
       });
     }
   };
