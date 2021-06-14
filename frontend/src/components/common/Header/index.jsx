@@ -7,14 +7,10 @@ import logo from '../../../assets/logo.svg';
 import cart from '../../../assets/shopping-cart-solid.svg';
 import userlogo from '../../../assets/user-solid.svg';
 import nav from '../../../assets/bars-solid.svg';
-import { loadCart } from '../../../redux/actions/actionCreatorsCart';
 
-function Header({ cartList, dispatch, user }) {
+function Header({ cartList, user }) {
   const [state, setState] = useState(false);
   const history = useHistory();
-  useEffect(() => {
-    dispatch(loadCart());
-  }, []);
 
   useEffect(() => {
     if (!user.token) history.push('/login');
@@ -73,7 +69,6 @@ function Header({ cartList, dispatch, user }) {
 
 Header.propTypes = {
   cartList: PropTypes.shape([]).isRequired,
-  dispatch: PropTypes.func.isRequired,
   user: PropTypes.shape({
     token: PropTypes.string,
   }).isRequired,

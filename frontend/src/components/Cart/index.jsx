@@ -11,8 +11,6 @@ import {
 import './cart.scss';
 
 function ShoppingCart({ cartList, dispatch, user }) {
-  // eslint-disable-next-line no-debugger
-  debugger;
   function getTotalCost(total, cost) {
     return total + cost;
   }
