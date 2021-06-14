@@ -19,6 +19,16 @@ describe('updateCart function', () => {
       product: { productModel: 'Leica' },
     });
   });
+  test('should dispatch UPDATE_CART_ERROR', async () => {
+    axios.mockRejectedValue();
+    const dispatch = jest.fn();
+
+    await updateCart()(dispatch);
+
+    expect(dispatch).toHaveBeenCalledWith({
+      type: actionTypes.UPDATE_CART_ERROR,
+    });
+  });
 });
 
 describe('toggleCart function', () => {
