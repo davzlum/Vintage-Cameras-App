@@ -6,7 +6,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import CamerasList from './components/Products/ProductsList';
+import ProductsList from './components/Products/ProductsList';
 import CameraDetail from './components/Products/ProductDetail';
 import Header from './components/common/Header';
 import Dashboard from './components/Dashboard';
@@ -30,7 +30,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/favorites" component={Favorites} />
           <Route exact path="/cart" component={Cart} />
-          <Route exact path="/:section" component={CamerasList} />
+          <Route exact path="/:section" component={ProductsList} />
           <Route exact path="/:section/:productId" component={CameraDetail} />
           <Redirect to="/" />
         </Switch>

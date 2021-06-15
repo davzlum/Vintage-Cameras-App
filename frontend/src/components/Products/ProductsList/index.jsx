@@ -12,7 +12,7 @@ import toggleFavorite from '../../../redux/actions/actionCreatorsFavorites';
 
 import('./index.scss');
 
-function CamerasList({
+function ProductsList({
   products, dispatch, user,
 }) {
   const { section } = useParams();
@@ -30,7 +30,6 @@ function CamerasList({
             <Link to={`/${section}/${product._id}`}>
               <div className="item-info">
                 <span>{product.productModel}</span>
-                <span>{product.isFavorite ? 'true' : 'false'}</span>
                 <span>
                   {product.price}
                   €
@@ -42,6 +41,7 @@ function CamerasList({
             </Link>
             <button
               type="button"
+              data-testid="button-toggleFavorite"
               className="favorite-button"
               onClick={() => {
                 dispatch(toggleFavorite(product.isFavorite, product, user, 'favorites'));
@@ -60,7 +60,7 @@ function CamerasList({
   );
 }
 
-CamerasList.propTypes = {
+ProductsList.propTypes = {
   products: PropTypes.shape([]).isRequired,
   dispatch: PropTypes.func.isRequired,
   user: PropTypes.shape({
@@ -83,4 +83,4 @@ function mapStateToProps({ products, user, favorites }) {
   };
 }
 
-export default connect(mapStateToProps)(CamerasList);
+export default connect(mapStateToProps)(ProductsList);
