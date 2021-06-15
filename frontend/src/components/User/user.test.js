@@ -2,7 +2,7 @@
 import React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { render, screen } from '../../utils/testUtils';
-import Dashboard from './index';
+import User from './index';
 
 let container = null;
 beforeEach(() => {
@@ -16,9 +16,9 @@ afterEach(() => {
   container = null;
 });
 
-describe('Dashboard Component', () => {
-  test('should contain text Cameras', () => {
-    render(<Dashboard />, container);
-    expect(screen.getByText(/Cameras/i)).toBeInTheDocument();
+describe('User Component', () => {
+  test('should contain text My profile', () => {
+    render(<User />, container);
+    expect(screen.getByText(/My profile/i)).toBeInTheDocument();
   });
 });
