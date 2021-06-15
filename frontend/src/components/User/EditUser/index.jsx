@@ -107,7 +107,7 @@ export default function EditUser({ onAction }) {
 
           </label>
         </div>
-        <button onClick={sendData} className="button button__submit" type="button" name="sign-button" id="sign-button" value="Update">
+        <button data-testid="button-submit" onClick={sendData} className="button button__submit" type="button" name="sign-button" id="sign-button" value="Update">
           <img src={SaveEdition} alt="saveEdition" />
         </button>
       </form>

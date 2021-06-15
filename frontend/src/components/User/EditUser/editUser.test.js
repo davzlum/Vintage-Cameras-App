@@ -1,13 +1,19 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
-import { render, screen } from '../../../utils/testUtils';
+import { render, screen, fireEvent } from '../../../utils/testUtils';
 import EditUser from './index';
+import { updateUser } from '../../../redux/actions/actionCreatorsUser';
+import actionTypes from '../../../redux/actions/actionTypes';
 
 let container = null;
 beforeEach(() => {
   container = document.createElement('div');
   document.body.appendChild(container);
+  const initialState = {
+    user: { user: { name: 'Hola' } },
+  };
+  render(<EditUser />, { initialState });
 });
 
 afterEach(() => {
@@ -18,7 +24,17 @@ afterEach(() => {
 
 describe('EditUser Component', () => {
   test('should contain text name', () => {
-    render(<EditUser />, container);
-    expect(screen.getByText(/Password/i)).toBeInTheDocument();
+    render(<EditUser />, container, { user: { name: 'Hola' } });
+    expect(screen.getByText(/Address/i)).toBeInTheDocument();
+  });
+  test('On press button submit should dispatch updateUser', () => {
+    const { getByTestId } = render(<EditUser />);
+    const button = getByTestId('button-submit');
+    updateUser.mockImplementationOnce(() => ({
+      type: actionTypes.UPDATE_USER,
+      newUser: { user: { name: 'Hola' } },
+    }));
+    fireEvent.click(button);
+    expect(updateUser).toHaveBeenCalledTimes(1);
   });
 });
