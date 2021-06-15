@@ -14,7 +14,6 @@ import Login from './components/Login';
 import User from './components/User';
 import Cart from './components/Cart';
 import configureStore from './redux/store';
-import './App.css';
 import Favorites from './components/Favorites';
 import Register from './components/Register';
 

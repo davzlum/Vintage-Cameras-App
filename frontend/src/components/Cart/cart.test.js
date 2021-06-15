@@ -18,31 +18,27 @@ describe('Given a ShoppingCart component', () => {
     });
   });
   describe('When is added one product in cart', () => {
+    let initialState;
     beforeEach(() => {
-      const initialState = {
+      initialState = {
         user: {},
-        cartList: {
-          cameras: [{
+        cartList: [
+          {
             productModel: 'Leica',
-            isOnCart: false,
-            images: [],
-          }],
-          lenses: [{}],
-          films: [{}],
-        },
+            images: ['hola', 'adios'],
+          },
+        ],
       };
-      render(<ShoppingCart />, { initialState });
     });
     describe('And delete button from cart is clicked', () => {
       test('deleteFromCart function in invoked', () => {
-        const { getByTestId } = render(<ShoppingCart />);
+        const { getByTestId } = render(<ShoppingCart initialState={initialState} />);
         const button = getByTestId('button-remove');
         toggleCart.mockImplementationOnce(() => ({
           type: actionTypes.DELETE_CART_PRODUCT,
           product: {
             productModel: 'Leica',
-            isOnCart: false,
-            images: [],
+            images: ['hola'],
           },
         }));
         fireEvent.click(button);

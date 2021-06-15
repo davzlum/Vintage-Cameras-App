@@ -3,13 +3,14 @@ const JWTstrategy = require('passport-jwt');
 const localStrategy = require('passport-local');
 const User = require('../model/userModel');
 const md5 = require('md5');
+require('dotenv').config();
 
 passport.use(
   'signup',
   new localStrategy.Strategy(
     {
-      usernameField: 'email',
-      passwordField: 'password',
+      usernameField: process.env.USER_EMAIL,
+      passwordField: process.env.USER_PASSWORD,
       passReqToCallback: true,
     },
     async (req, email, password, done) => {
@@ -41,8 +42,8 @@ passport.use(
   'login',
   new localStrategy.Strategy(
     {
-      usernameField: 'email',
-      passwordField: 'password',
+      usernameField: process.env.USER_EMAIL,
+      passwordField: process.env.USER_PASSWORD,
     },
     async (email, password, done) => {
       try {

@@ -39,6 +39,13 @@
     }
 }
 
+.history-title:hover {
+    background-color: red;
+}
+.specifications-title:hover .specifications-info {
+    display: block;
+}
+
 .information-container{
     position: relative;
     .history-info{
@@ -52,15 +59,6 @@
         position: absolute;
         z-index: 2;
     }
-}
-.history-title:hover {
-    background-color: red;
-}
-.specifications-title:hover .specifications-info {
-    display: block;
-}
-
-.information-container{
     position: relative;
     width: calc(100vw - 20px);
     height: 300px;

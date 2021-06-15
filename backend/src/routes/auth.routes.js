@@ -2,27 +2,32 @@ const { Router } = require('express');
 const usersController = require('../controllers/usersController')();
 const passport = require('passport');
 
-const authRoutes = Router();
+function authRouter(){
 
-authRoutes.post('/signup', passport.authenticate('signup', { session: false }), 
-usersController.createOne);
+    const authRoutes = Router();
 
-authRoutes.post('/login', usersController.login);
+    authRoutes.post('/signup', passport.authenticate('signup', { session: false }), 
+    usersController.createOne);
 
-authRoutes.post('/token', usersController.token);
+    authRoutes.post('/login', usersController.login);
 
-authRoutes.post('/logout', usersController.logout);
+    authRoutes.post('/token', usersController.token);
 
-authRoutes.get('/profile', usersController.profile);
+    authRoutes.post('/logout', usersController.logout);
 
-authRoutes
-.route('/user')
-.get(usersController.getAllUsers)
+    authRoutes.get('/profile', usersController.profile);
 
-authRoutes
-.route('/user/:userId')
-.get(usersController.getById)
-.put(usersController.updateById)
-.delete(usersController.deleteById);
+    authRoutes
+    .route('/user')
+    .get(usersController.getAllUsers)
 
-module.exports = authRoutes;
+    authRoutes
+    .route('/user/:userId')
+    .get(usersController.getById)
+    .put(usersController.updateById)
+    .delete(usersController.deleteById);
+
+    return authRoutes;
+}
+
+module.exports = authRouter();

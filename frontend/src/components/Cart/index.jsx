@@ -55,7 +55,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
 
                   <div className="shopping-cart__left">
                     <div className="image-container">
-                      <img src={product?.images[0]} alt={product.productModel} />
+                      <img src={product.images[0]} alt={product.productModel} />
                     </div>
                     <span className="information">
                       <Link to={`/${product.section}/${product._id}`}>
