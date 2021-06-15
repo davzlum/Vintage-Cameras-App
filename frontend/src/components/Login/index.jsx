@@ -47,7 +47,7 @@ function Login({ dispatch, user }) {
             </label>
           </div>
           <div className="button">
-            <button onClick={userLogin} className="button__item" type="submit" name="login-button" id="login-button">Login</button>
+            <button data-testid="login-button" onClick={userLogin} className="button__item" type="submit" name="login-button" id="login-button">Login</button>
             <input onClick={handleRegistration} className="button__item button__item--black" type="submit" name="sign-button" id="sign-button" value="sign up" />
           </div>
         </form>
