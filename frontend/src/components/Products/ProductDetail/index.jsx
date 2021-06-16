@@ -135,6 +135,7 @@ function CameraDetail({
               type="button"
               className="button cart"
               onClick={submit}
+              data-testid="buttonAdd"
             >
               <p>Add to cart</p>
             </button>

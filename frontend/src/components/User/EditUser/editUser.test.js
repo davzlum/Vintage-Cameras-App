@@ -6,6 +6,8 @@ import EditUser from './index';
 import { updateUser } from '../../../redux/actions/actionCreatorsUser';
 import actionTypes from '../../../redux/actions/actionTypes';
 
+jest.mock('../../../redux/actions/actionCreatorsUser');
+
 let container = null;
 beforeEach(() => {
   container = document.createElement('div');
@@ -24,11 +26,11 @@ afterEach(() => {
 
 describe('EditUser Component', () => {
   test('should contain text name', () => {
-    render(<EditUser />, container, { user: { name: 'Hola' } });
+    render(<EditUser />, container, { user: { user: { name: 'Hola' } } });
     expect(screen.getByText(/Address/i)).toBeInTheDocument();
   });
   test('On press button submit should dispatch updateUser', () => {
-    const { getByTestId } = render(<EditUser />);
+    const { getByTestId } = render(<EditUser />, container, { user: { user: { name: 'Hola' } } });
     const button = getByTestId('button-submit');
     updateUser.mockImplementationOnce(() => ({
       type: actionTypes.UPDATE_USER,

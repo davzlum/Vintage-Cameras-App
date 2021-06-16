@@ -1,34 +1,20 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import { render, screen } from '../../../utils/testUtils';
 import Header from './index';
 
-let container = null;
-beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement('div');
-  document.body.appendChild(container);
-});
+const initialState = {
+  cartList: {
+    cameras: [],
+    lenses: [],
+    films: [],
+  },
+  user: { token: 'hola' },
+};
 
-afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
-
-describe('Header Component', () => {
-  test.only('should contain "Cameras" text', () => {
-    render(
-      <Header />,
-      container,
-      {
-        initialState: {
-          cartList: [],
-          user: {},
-        },
-      },
-    );
-    expect(container.querySelector('sections-list').textContent).toBe('Cameras');
+describe('Login Component', () => {
+  test('should contain text username', () => {
+    render(<Header />, { initialState });
+    expect(screen.getByTestId('logo')).toBeInTheDocument();
   });
 });

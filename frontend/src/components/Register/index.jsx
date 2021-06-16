@@ -53,7 +53,7 @@ function Register() {
 
   return (
     <main>
-      <form className="form-container" onSubmit={sendData}>
+      <form className="form-container" data-testid="submit" onSubmit={sendData}>
         <h1>Register</h1>
         <p className="info-required">(*) is required</p>
         <div className="form-floating">

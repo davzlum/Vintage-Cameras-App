@@ -18,7 +18,7 @@ function Header({ cartList, user }) {
   return (
     user.token
       ? (
-        <header className="header">
+        <header title="cameras" className="header">
           <ul className="header-container">
             <li className="header-container__nav">
               <button type="button" className={state ? 'block' : 'hidden'} onClick={() => setState(!state)}>
@@ -32,7 +32,7 @@ function Header({ cartList, user }) {
               </button>
             </li>
             <li className="header-container__logo">
-              <Link to="/"><img src={logo} alt="logo" /></Link>
+              <Link to="/"><img data-testid="logo" src={logo} alt="logo" /></Link>
             </li>
             <li className="header-container__right">
               <span className="header-cart">

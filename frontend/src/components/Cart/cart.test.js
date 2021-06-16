@@ -3,6 +3,7 @@ import React from 'react';
 import ShoppingCart from './index';
 import { screen, render, fireEvent } from '../../utils/testUtils';
 import actionTypes from '../../redux/actions/actionTypes';
+
 import {
   toggleCart,
 } from '../../redux/actions/actionCreatorsCart';
@@ -22,17 +23,23 @@ describe('Given a ShoppingCart component', () => {
     beforeEach(() => {
       initialState = {
         user: {},
-        cartList: [
+        cartList:
           {
-            productModel: 'Leica',
-            images: ['hola', 'adios'],
+            cameras: [
+              {
+                productModel: 'Leica',
+                images: ['hola', 'adios'],
+              },
+            ],
+            lenses: [],
+            films: [],
+
           },
-        ],
       };
     });
     describe('And delete button from cart is clicked', () => {
       test('deleteFromCart function in invoked', () => {
-        const { getByTestId } = render(<ShoppingCart initialState={initialState} />);
+        const { getByTestId } = render(<ShoppingCart />, { initialState });
         const button = getByTestId('button-remove');
         toggleCart.mockImplementationOnce(() => ({
           type: actionTypes.DELETE_CART_PRODUCT,
@@ -42,7 +49,7 @@ describe('Given a ShoppingCart component', () => {
           },
         }));
         fireEvent.click(button);
-        expect(toggleCart).toHaveBeenCalledTimes(1);
+        expect(screen.getByText(/Are you sure/i)).toBeInTheDocument();
       });
     });
   });
