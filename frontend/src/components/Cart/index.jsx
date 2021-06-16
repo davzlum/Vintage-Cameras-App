@@ -44,7 +44,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
   };
 
   return (
-    <>
+    <main>
       <h1 className="section-title">Cart</h1>
       <div className="shopping-cart">
         <div className="shopping-cart__product-box">
@@ -90,7 +90,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
           <button type="button" data-testid="button-buy" className="buy">Buy</button>
         </div>
       </div>
-    </>
+    </main>
   );
 }
 

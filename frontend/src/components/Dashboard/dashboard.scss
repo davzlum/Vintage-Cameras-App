@@ -7,8 +7,12 @@
 .section-list{
     border-top: 2px solid $color-corporative;
     margin: 0 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     &__item{
-        width: calc(100vw - 20px);
+        width: 400px;
         height: 150px;
         border-radius: 20px;
         position: relative;
@@ -16,7 +20,7 @@
         margin: 10px 0;
         img{
             position: absolute;
-            width: 415px;
+            width: 100%;
         }
         .section-name{
             z-index: 2;
@@ -26,7 +30,8 @@
             text-align: center;
             font-size: 25px;
             text-transform: uppercase;
-            top: 40%;
+            top: 0;
+            padding-top: 55px;
             color: $color-white;
         }
     }
@@ -41,5 +46,11 @@
         height: 100vh;
         background-color: $color-dark;
         opacity: 50%;
+    }
+}
+
+@media (min-width: 415px) {
+    .section-list__item{
+        margin: 10px 15px;
     }
 }

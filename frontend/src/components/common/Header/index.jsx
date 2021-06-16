@@ -46,7 +46,7 @@ function Header({ cartList, user }) {
                         cartList.cameras.length
                         + cartList.lenses.length
                         + cartList.films.length
-}
+                  }
                         </span>
                         <span className="cart-circle"> </span>
                       </>
@@ -61,6 +61,45 @@ function Header({ cartList, user }) {
               </span>
             </li>
           </ul>
+          <div className="header-container-max">
+            <div className="header-container-max__logo">
+              <Link to="/"><img src={logo} alt="logo" /></Link>
+            </div>
+            <div className="header-container-max__nav">
+              <ul className="nav-left">
+                <li className="section-item"><Link to={`/${'cameras'}`}>Cameras</Link></li>
+                <li className="section-item"><Link to={`/${'lenses'}`}>Lenses</Link></li>
+                <li className="section-item"><Link to={`/${'films'}`}>Films</Link></li>
+                <li className="section-item"><Link to="/favorites">My favorites</Link></li>
+              </ul>
+              <ul className="nav-right">
+                <li className="nav-right-cart">
+                  <Link to="/cart">
+                    <img src={cart} alt="cart" />
+                    {cartList !== {}
+                      ? (
+                        <>
+                          <span className="cart-number">
+                            {
+                        cartList.cameras.length
+                        + cartList.lenses.length
+                        + cartList.films.length
+                  }
+                          </span>
+                          <span className="cart-circle"> </span>
+                        </>
+                      )
+                      : <span />}
+                  </Link>
+                </li>
+                <li className="nav-right-user">
+                  <Link to="/user">
+                    <img src={userlogo} alt="user" />
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
         </header>
       )
       : ''

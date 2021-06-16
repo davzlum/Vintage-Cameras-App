@@ -52,7 +52,7 @@ function Register() {
   };
 
   return (
-    <>
+    <main>
       <form className="form-container" onSubmit={sendData}>
         <h1>Register</h1>
         <p className="info-required">(*) is required</p>
@@ -109,7 +109,7 @@ function Register() {
           <button className="button button__cancel" type="button"><Link to="/login">Cancel</Link></button>
         </div>
       </form>
-    </>
+    </main>
   );
 }
 

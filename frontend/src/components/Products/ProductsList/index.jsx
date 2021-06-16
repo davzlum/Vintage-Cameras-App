@@ -21,7 +21,7 @@ function ProductsList({
     dispatch(loadProducts(section, user));
   }, [section]);
   return (
-    <>
+    <main>
       <h1 className="section-title">{section}</h1>
       <ul className="cameras">
         {products.map((product) => (
@@ -56,7 +56,7 @@ function ProductsList({
           </li>
         ))}
       </ul>
-    </>
+    </main>
   );
 }
 
