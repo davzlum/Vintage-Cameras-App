@@ -1,0 +1,590 @@
+{
+	"info": {
+		"_postman_id": "7e18e114-5657-421a-8778-45c3e4e1b64f",
+		"name": "vintageCameras",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cameras",
+			"item": [
+				{
+					"name": "GetCameras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "GetCameraById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCamera",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"specifications\": {\n            \"lens\": \"Mamiya 110mm\",\n            \"mount\": \"Custom Mamiya breech-lock bayonet mount\",\n            \"focus\": \"0.2m to infinity\",\n            \"aperture\": \"f/2.8 - f/22\",\n            \"speed\": \"8s to 1/400 sec. and B.\",\n            \"weight\": \"2400 g\",\n            \"film\": \"120/220mm\"\n        },\n        \"images\": [\n            \"\"\n        ],\n        \"cameraModel\": \"Mamiya RZ67\",\n        \"year\": \"1982-2004\",\n        \"arsenalFactory\": \"Mamiya\",\n        \"history\": \"The Mamiya RZ67 is a series of medium format system cameras primarily designed for using 120/220 film. It consists of three models: (a) the original Mamiya RZ67, introduced in 1982; (b) the Mamiya RZ67 Pro II, introduced in 1995; and (c) the Mamiya RZ67 Pro IID, introduced in 2004. The original RZ67 design was by Tsuneaki Munakata, who also designed the Mamiya ZM and Mamiya M645 Super.The name 'RZ' was derived from the RB67, where 'RB' stands for revolving back. It was expected that the RZ series might replace the RB series, but this did not happen: at least until 2010, the RB67 Pro SD and the RZ67 Pro IID were both still being sold new.\",\n        \"price\": 1800\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/products/cameras",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"cameras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModifyCamera",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"specifications\": {\n            \"lens\": \"Mamiya 110mm\",\n            \"mount\": \"Custom Mamiya breech-lock bayonet mount\",\n            \"focus\": \"0.2m to infinity\",\n            \"aperture\": \"f/2.8 - f/22\",\n            \"speed\": \"8s to 1/400 sec. and B.\",\n            \"weight\": \"2400 g\",\n            \"film\": \"120/220mm\"\n        },\n        \"images\": [\n            \"https://ibb.co/G0Fr4ZX\",\n            \"https://ibb.co/nmNpVP9\",\n            \"https://ibb.co/myD4fMd\",\n            \"https://ibb.co/1vDL2m1\",\n            \"https://ibb.co/c2pT0JV\",\n            \"https://ibb.co/0GsSHrY\"\n        ],\n        \"_id\": \"60b60cf55d00b23b8fe540ac\",\n        \"cameraModel\": \"Mamiya RZ67\",\n        \"year\": \"1982-2004\",\n        \"arsenalFactory\": \"Mamiya\",\n        \"history\": \"The Mamiya RZ67 is a series of medium format system cameras primarily designed for using 120/220 film. It consists of three models: (a) the original Mamiya RZ67, introduced in 1982; (b) the Mamiya RZ67 Pro II, introduced in 1995; and (c) the Mamiya RZ67 Pro IID, introduced in 2004. The original RZ67 design was by Tsuneaki Munakata, who also designed the Mamiya ZM and Mamiya M645 Super.The name 'RZ' was derived from the RB67, where 'RB' stands for revolving back. It was expected that the RZ series might replace the RB series, but this did not happen: at least until 2010, the RB67 Pro SD and the RZ67 Pro IID were both still being sold new.\",\n        \"price\": 1800,\n        \"__v\": 0\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/products/cameras/60b60cf55d00b23b8fe540ac",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"cameras",
+								"60b60cf55d00b23b8fe540ac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete camera",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products/cameras/60b60cf55d00b23b8fe540ac",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"cameras",
+								"60b60cf55d00b23b8fe540ac"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lenses",
+			"item": [
+				{
+					"name": "GetLenses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "CreateLens",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"productModel\": \"Hola\",\n  \"year\": \"2903\",\n  \"arsenalFactory\": \"Barna\",\n  \"specifications\": {\n    \"lens\": \"any\",\n    \"mount\": \"any\",\n    \"focus\": \"any\",\n    \"aperture\": \"any\",\n    \"weight\": \"any\",\n  },\n  \"history\": \"wtf\",\n  \"price\": 100,\n  \"images\": [],\n  \"section\": \"lenses\",\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/products/lenses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"lenses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify lens",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2021/products/lenses/60bf578ebd16993151473e3e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2021",
+							"path": [
+								"products",
+								"lenses",
+								"60bf578ebd16993151473e3e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete lens",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2021/products/lenses/60bf578ebd16993151473e3e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2021",
+							"path": [
+								"products",
+								"lenses",
+								"60bf578ebd16993151473e3e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetLensById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Films",
+			"item": [
+				{
+					"name": "GetFilms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "CreateFilms",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjIyNTUzMzMyLCJleHAiOjE2MjI1NTUxMzJ9.ucVEOGhOdHrcBMHE_NK-gNg1E7vjj8nWoW8-vuf0REw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"filmModel\": \"FujiColor Pro 400H\",\n  \"expired\": true,\n  \"iso\": 400,\n  \"frames\": 36,\n  \"color\": \"color\",\n  \"stock\": 18,\n  \"description\": \"FUJIFILM's Fujicolor PRO 400H Professional is a high-speed daylight-balanced color negative film with a nominal sensitivity of ISO 400/27° when processed in C-41 chemistry. Featuring fourth layer color and Interlayer effect technologies, this film exhibits a soft contrast profile with faithful, yet vivid, color reproduction. It produces smooth and natural skin tones and has a broad exposure latitude, making it suitable for general photographic applications and working in a wide variety of lighting conditions. \",\n  \"price\": 7,\n  \"images\": [\"https://ibb.co/6wKkyfx\"],\n  \"favState\": false,\n  \"format\": 35\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2021/products/films",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2021",
+							"path": [
+								"products",
+								"films"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify film",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2021/products/films/60b6313e898179741fd4e572",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2021",
+							"path": [
+								"products",
+								"films",
+								"60b6313e898179741fd4e572"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete film",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2021/products/films/60b6313e898179741fd4e572",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2021",
+							"path": [
+								"products",
+								"films",
+								"60b6313e898179741fd4e572"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetFilmById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2021/products/films/60b6313e898179741fd4e572",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2021",
+							"path": [
+								"products",
+								"films",
+								"60b6313e898179741fd4e572"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GetUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2021/user/60c60378c975c63c8c7678c8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2021",
+							"path": [
+								"user",
+								"60c60378c975c63c8c7678c8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2021/user/60c60378c975c63c8c7678c8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2021",
+							"path": [
+								"user",
+								"60c60378c975c63c8c7678c8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2021/user/60c60378c975c63c8c7678c8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2021",
+							"path": [
+								"user",
+								"60c60378c975c63c8c7678c8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Passport JWT",
+			"item": [
+				{
+					"name": "user profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjIyNTQxMDMyLCJleHAiOjE2MjI1NDEwOTJ9.yPtrcIESzmM2hLhsvzkv_GWKX5weEkDWShz-Zi5KYmw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwYjBjYWU4ZTQ1ZjFhODUyZjBlNzIzYSIsImVtYWlsIjoiY2hvcHBlZEBoZXJvZXMuY29tIn0sImlhdCI6MTYyMjE5OTA4MiwiZXhwIjoxNjIyMTk5MTQyfQ.XbwxNDNZIE3LhujfSCB6VGOZy9Fh7V_-nKNrpWmSoHA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwYjBjYWU4ZTQ1ZjFhODUyZjBlNzIzYSIsImVtYWlsIjoiY2hvcHBlZEBoZXJvZXMuY29tIn0sImlhdCI6MTYyMjE5OTA4Mn0.eJjSxONT1xXJD0ONTdHF-xHIseQpkK3T4f9jy74ubH0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwYWZhM2M3MzMxZmZiMDZhNDZkMjljNiIsImVtYWlsIjoicGVwZUBoZXJvZXMuY29tIn0sImlhdCI6MTYyMjEyODE4Nn0.9Iww0wxeCV0gnzcS4e6h3tWSdEjHB8QiqXuoSw0Z_YM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "pepe@heroes.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "pepe@heroes.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "home",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
