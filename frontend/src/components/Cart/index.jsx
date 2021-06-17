@@ -19,13 +19,6 @@ function ShoppingCart({ cartList, dispatch, user }) {
     return total.reduce(getTotalCost);
   }
 
-  // function buyCartList() {
-  //   cartList.forEach((product) => {
-  //     const updatedProduct = { ...product, stock: product.stock - product.quantity };
-  //     dispatch(updateCart(updatedProduct));
-  //   });
-  // }
-
   const submit = (product) => {
     confirmAlert({
       title: 'Confirm to remove',
