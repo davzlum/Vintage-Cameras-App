@@ -1,18 +1,16 @@
 @import './../../../style/color';
 @import './../../../style/mixin';
 
-.header{
-    position:sticky;
-    top: 0;
-    z-index: 3;
-    background-color: $color-white;
-}
 
 .header-container {
+    background-color: $color-white;
+    top: 0;
+    z-index: 5;
+    position:sticky;
     @include flex-content(none, row, space-between, center);
     height: 80px;
-    padding: 0;
-    margin: 0px 30px;
+    padding: 0px 30px;
+
     
     &__nav {
         width: 75px;
@@ -101,9 +99,10 @@
     align-items: center;
     width: 100%;
     padding: 10px 20px ;
-    position: sticky;
+    position: relative;
     background-color: $color-corporative;
     margin-bottom: 20px;
+    z-index: 5;
     &__logo{
         img{
             width: 150px;
