@@ -36,3 +36,9 @@ a{
   text-decoration: none;
   outline: none;
 }
+
+@media (min-width: 415px) {
+  main{
+    margin: 0 3%;
+  }
+}

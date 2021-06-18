@@ -39,12 +39,18 @@
     }
 }
 
+.specifications-title:hover .specifications-info {
+    display: none;
+}
+
 .information-container{
     position: relative;
+    width: 100%;
     .history-info{
         display: block;
         height: 200px;
         position: absolute;
+        width: 100%;
         
     }
     .specifications-info {
@@ -52,17 +58,7 @@
         position: absolute;
         z-index: 2;
     }
-}
-.history-title:hover {
-    background-color: red;
-}
-.specifications-title:hover .specifications-info {
-    display: block;
-}
-
-.information-container{
     position: relative;
-    width: calc(100vw - 20px);
     height: 300px;
     margin-top: 10px;
     &__history-info{
@@ -83,6 +79,7 @@
         margin-top: 10px;
     }
     &__specs-title{
+        background-color:transparent;
         font-size: 18px;
         font-weight: 600;
         width: 50%;
@@ -108,10 +105,6 @@
     &__specs-title:hover ~ &__history-title{
         color: $color-dark !important;
         border-bottom: none;
-    }
-    &__history-title:hover ~ &__specs-info{
-        display: none;
-        
     }
     &__specs-title:hover ~ &__specs-info{
         display: block;

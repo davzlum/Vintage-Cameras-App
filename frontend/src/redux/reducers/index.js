@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import productsReducer from './productsReducer';
-import cartProductsReducer from './cartProductsReducer';
+import cartProductsReducer from './cartReducer';
 import selectedProductReducer from './selectedProductReducer';
 import usersReducer from './usersReducer';
-import favoritesReducer from './favoritesProductsReducer';
+import favoritesReducer from './favoritesReducer';
 
 const rootReducer = combineReducers({
   products: productsReducer,

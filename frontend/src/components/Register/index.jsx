@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { confirmAlert } from 'react-confirm-alert';
 import { signup } from '../../redux/actions/actionCreatorsUser';
@@ -52,8 +52,8 @@ function Register() {
   };
 
   return (
-    <>
-      <form className="form-container" onSubmit={sendData}>
+    <main>
+      <form className="form-container" data-testid="submit" onSubmit={sendData}>
         <h1>Register</h1>
         <p className="info-required">(*) is required</p>
         <div className="form-floating">
@@ -104,11 +104,12 @@ function Register() {
             <input type="number" placeholder="Insert postal code" name="cp" maxLength="5" onChange={handleInputChange} />
           </label>
         </div>
-        <div className="button">
-          <input className="button-submit" type="submit" name="sign-button" id="sign-button" value="sign up" />
+        <div className="button-container">
+          <input className="button button__submit" type="submit" name="sign-button" id="sign-button" value="sign up" />
+          <button className="button button__cancel" type="button"><Link to="/login">Cancel</Link></button>
         </div>
       </form>
-    </>
+    </main>
   );
 }
 

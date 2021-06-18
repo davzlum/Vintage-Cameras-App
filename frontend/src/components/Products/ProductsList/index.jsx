@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -12,7 +11,7 @@ import toggleFavorite from '../../../redux/actions/actionCreatorsFavorites';
 
 import('./index.scss');
 
-function CamerasList({
+function ProductsList({
   products, dispatch, user,
 }) {
   const { section } = useParams();
@@ -21,7 +20,7 @@ function CamerasList({
     dispatch(loadProducts(section, user));
   }, [section]);
   return (
-    <>
+    <main>
       <h1 className="section-title">{section}</h1>
       <ul className="cameras">
         {products.map((product) => (
@@ -30,7 +29,6 @@ function CamerasList({
             <Link to={`/${section}/${product._id}`}>
               <div className="item-info">
                 <span>{product.productModel}</span>
-                <span>{product.isFavorite ? 'true' : 'false'}</span>
                 <span>
                   {product.price}
                   €
@@ -42,6 +40,7 @@ function CamerasList({
             </Link>
             <button
               type="button"
+              data-testid="button-toggleFavorite"
               className="favorite-button"
               onClick={() => {
                 dispatch(toggleFavorite(product.isFavorite, product, user, 'favorites'));
@@ -56,11 +55,11 @@ function CamerasList({
           </li>
         ))}
       </ul>
-    </>
+    </main>
   );
 }
 
-CamerasList.propTypes = {
+ProductsList.propTypes = {
   products: PropTypes.shape([]).isRequired,
   dispatch: PropTypes.func.isRequired,
   user: PropTypes.shape({
@@ -83,4 +82,4 @@ function mapStateToProps({ products, user, favorites }) {
   };
 }
 
-export default connect(mapStateToProps)(CamerasList);
+export default connect(mapStateToProps)(ProductsList);

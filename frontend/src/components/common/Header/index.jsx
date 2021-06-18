@@ -7,14 +7,10 @@ import logo from '../../../assets/logo.svg';
 import cart from '../../../assets/shopping-cart-solid.svg';
 import userlogo from '../../../assets/user-solid.svg';
 import nav from '../../../assets/bars-solid.svg';
-import { loadCart } from '../../../redux/actions/actionCreatorsCart';
 
-function Header({ cartList, dispatch, user }) {
+function Header({ cartList, user }) {
   const [state, setState] = useState(false);
   const history = useHistory();
-  useEffect(() => {
-    dispatch(loadCart());
-  }, []);
 
   useEffect(() => {
     if (!user.token) history.push('/login');
@@ -22,7 +18,7 @@ function Header({ cartList, dispatch, user }) {
   return (
     user.token
       ? (
-        <header className="header">
+        <>
           <ul className="header-container">
             <li className="header-container__nav">
               <button type="button" className={state ? 'block' : 'hidden'} onClick={() => setState(!state)}>
@@ -36,7 +32,7 @@ function Header({ cartList, dispatch, user }) {
               </button>
             </li>
             <li className="header-container__logo">
-              <Link to="/"><img src={logo} alt="logo" /></Link>
+              <Link to="/"><img data-testid="logo" src={logo} alt="logo" /></Link>
             </li>
             <li className="header-container__right">
               <span className="header-cart">
@@ -50,7 +46,7 @@ function Header({ cartList, dispatch, user }) {
                         cartList.cameras.length
                         + cartList.lenses.length
                         + cartList.films.length
-}
+                  }
                         </span>
                         <span className="cart-circle"> </span>
                       </>
@@ -65,7 +61,46 @@ function Header({ cartList, dispatch, user }) {
               </span>
             </li>
           </ul>
-        </header>
+          <div className="header-container-max">
+            <div className="header-container-max__logo">
+              <Link to="/"><img src={logo} alt="logo" /></Link>
+            </div>
+            <div className="header-container-max__nav">
+              <ul className="nav-left">
+                <li className="section-item"><Link to={`/${'cameras'}`}>Cameras</Link></li>
+                <li className="section-item"><Link to={`/${'lenses'}`}>Lenses</Link></li>
+                <li className="section-item"><Link to={`/${'films'}`}>Films</Link></li>
+                <li className="section-item"><Link to="/favorites">My favorites</Link></li>
+              </ul>
+              <ul className="nav-right">
+                <li className="nav-right-cart">
+                  <Link to="/cart">
+                    <img src={cart} alt="cart" />
+                    {cartList !== {}
+                      ? (
+                        <>
+                          <span className="cart-number">
+                            {
+                        cartList.cameras.length
+                        + cartList.lenses.length
+                        + cartList.films.length
+                  }
+                          </span>
+                          <span className="cart-circle"> </span>
+                        </>
+                      )
+                      : <span />}
+                  </Link>
+                </li>
+                <li className="nav-right-user">
+                  <Link to="/user">
+                    <img src={userlogo} alt="user" />
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </>
       )
       : ''
   );
@@ -73,7 +108,6 @@ function Header({ cartList, dispatch, user }) {
 
 Header.propTypes = {
   cartList: PropTypes.shape([]).isRequired,
-  dispatch: PropTypes.func.isRequired,
   user: PropTypes.shape({
     token: PropTypes.string,
   }).isRequired,

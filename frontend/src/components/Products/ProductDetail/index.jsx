@@ -13,8 +13,8 @@ import favoriteSolid from '../../../assets/heart-solid.svg';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import toggleFavorite from '../../../redux/actions/actionCreatorsFavorites';
 import { toggleCart } from '../../../redux/actions/actionCreatorsCart';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.scss';
+import 'slick-carousel/slick/slick-theme.scss';
 import './cameraDetail.scss';
 
 function CameraDetail({
@@ -46,7 +46,7 @@ function CameraDetail({
   };
 
   return (
-    <div>
+    <main>
       <h1 className="section-title">
         {section}
         {' '}
@@ -135,6 +135,7 @@ function CameraDetail({
               type="button"
               className="button cart"
               onClick={submit}
+              data-testid="buttonAdd"
             >
               <p>Add to cart</p>
             </button>
@@ -153,7 +154,7 @@ function CameraDetail({
           )}
         <button type="button" className="button info"><Link to={`/${section}`}>Go back</Link></button>
       </div>
-    </div>
+    </main>
   );
 }
 

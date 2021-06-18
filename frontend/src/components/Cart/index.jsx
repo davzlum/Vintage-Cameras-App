@@ -6,25 +6,17 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Link } from 'react-router-dom';
 import {
-  toggleCart, updateCart,
+  toggleCart,
 } from '../../redux/actions/actionCreatorsCart';
 import './cart.scss';
 
 function ShoppingCart({ cartList, dispatch, user }) {
-  // eslint-disable-next-line no-debugger
-  debugger;
   function getTotalCost(total, cost) {
     return total + cost;
   }
   function cartListTotalCost() {
     const total = cartList.map((x) => x.price * 1);
     return total.reduce(getTotalCost);
-  }
-  function buyCartList() {
-    cartList.forEach((product) => {
-      const updatedProduct = { ...product, stock: product.stock - product.quantity };
-      dispatch(updateCart(updatedProduct));
-    });
   }
 
   const submit = (product) => {
@@ -45,7 +37,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
   };
 
   return (
-    <>
+    <main>
       <h1 className="section-title">Cart</h1>
       <div className="shopping-cart">
         <div className="shopping-cart__product-box">
@@ -56,7 +48,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
 
                   <div className="shopping-cart__left">
                     <div className="image-container">
-                      <img src={product?.images[0]} alt={product.productModel} />
+                      <img src={product.images[0]} alt={product.productModel} />
                     </div>
                     <span className="information">
                       <Link to={`/${product.section}/${product._id}`}>
@@ -70,7 +62,7 @@ function ShoppingCart({ cartList, dispatch, user }) {
                       {product.price}
                       {' €  '}
                     </p>
-                    <button type="button" className="button-remove" data-testid="button-remove" onClick={() => submit(product)}> </button>
+                    <button type="button" data-testid="button-remove" className="button-remove" onClick={() => submit(product)}> </button>
                   </span>
                 </li>
               )) : <p>No products at cart</p>}
@@ -88,10 +80,10 @@ function ShoppingCart({ cartList, dispatch, user }) {
         </div>
         <div className="button-container">
           <Link to="/"><button type="button" data-testid="button-continue" className="continue">Continue</button></Link>
-          <button type="button" data-testid="button-buy" className="buy" onClick={() => buyCartList()}>Buy</button>
+          <button type="button" data-testid="button-buy" className="buy">Buy</button>
         </div>
       </div>
-    </>
+    </main>
   );
 }
 

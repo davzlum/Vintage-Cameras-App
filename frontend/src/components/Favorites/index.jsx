@@ -9,10 +9,8 @@ import toggleFavorite from '../../redux/actions/actionCreatorsFavorites';
 function Favorites({
   dispatch, user, favorites,
 }) {
-  // eslint-disable-next-line no-debugger
-  debugger;
   return (
-    <>
+    <main>
       <h1 className="section-title">Favorites</h1>
       <ul className="cameras">
         {favorites.map((product) => (
@@ -35,7 +33,7 @@ function Favorites({
           </li>
         ))}
       </ul>
-    </>
+    </main>
   );
 }
 

@@ -4,9 +4,6 @@ import returnProductSection from '../../shared/returnProductSection';
 
 function cartReducer(cartList = {}, action) {
   switch (action.type) {
-    case actionTypes.LOAD_CART_PRODUCT:
-      return cartList;
-
     case actionTypes.ADD_PRODUCTS_TO_CART:
       return {
         ...cartList,
@@ -26,7 +23,7 @@ function cartReducer(cartList = {}, action) {
         ],
       };
 
-    case actionTypes.UPDATE_PRODUCTS:
+    case actionTypes.UPDATE_CART:
       return {};
 
     case actionTypes.LOGIN:

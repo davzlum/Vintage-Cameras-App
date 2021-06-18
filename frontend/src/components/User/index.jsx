@@ -38,7 +38,7 @@ export default function User() {
   };
 
   return (
-    <>
+    <main>
       <div className="user-container">
         <h1>
           My profile
@@ -93,9 +93,9 @@ export default function User() {
         <ul className="nav-user">
           <li className="nav-user__item"><Link to="/favorites">My FAVORITES</Link></li>
           <li className="nav-user__item"><Link to="/cart">My CART</Link></li>
-          <li className="nav-user__button"><button className="button-logout" type="button" onClick={logMeOutNotification}>Logout</button></li>
+          <li className="nav-user__button"><button className="button-logout" data-testid="button-logout" type="button" onClick={logMeOutNotification}>Logout</button></li>
         </ul>
       </div>
-    </>
+    </main>
   );
 }

@@ -31,7 +31,7 @@
     }
 }
 .form-container
-.button-submit{
+.button{
     padding: 8px 20px;
     border: none;
     outline: none;
@@ -43,4 +43,7 @@
     margin: 20px 0;
     width: 120px;
     background-color: $color-dark;
+    &__cancel{
+        margin-left: 10px;
+    }
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Dashboard() {
   return (
-    <>
+    <main>
       <h1 className="section-title">Products</h1>
       <ul className="section-list">
         <li className="section-list__item">
@@ -26,7 +26,7 @@ function Dashboard() {
           </Link>
         </li>
       </ul>
-    </>
+    </main>
   );
 }
 
