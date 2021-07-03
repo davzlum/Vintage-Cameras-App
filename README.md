@@ -18,26 +18,26 @@
 
 ## The App:
 
-    Login:
-    ![Alt text](https://i.postimg.cc/L5cnj1GG/Captura-de-pantalla-2021-07-03-a-las-21-03-58.png)
+Login:
+    ![login](https://i.postimg.cc/L5cnj1GG/Captura-de-pantalla-2021-07-03-a-las-21-03-58.png)
 
-    Dashboard:
-    ![Alt text](https://i.postimg.cc/yxgDJPpF/Captura-de-pantalla-2021-07-03-a-las-21-05-04.png)
+Dashboard:
+    ![dashboard](https://i.postimg.cc/yxgDJPpF/Captura-de-pantalla-2021-07-03-a-las-21-05-04.png)
 
-    Cameras:
-    ![Alt text](https://i.postimg.cc/DZYWyD6v/Captura-de-pantalla-2021-07-03-a-las-21-11-02.png)
+Cameras:
+    ![cameras](https://i.postimg.cc/DZYWyD6v/Captura-de-pantalla-2021-07-03-a-las-21-11-02.png)
 
-    Lenses:
-    ![Alt text](https://i.postimg.cc/fWp3GGk5/Captura-de-pantalla-2021-07-03-a-las-21-12-25.png)
+Lenses:
+    ![lenses](https://i.postimg.cc/fWp3GGk5/Captura-de-pantalla-2021-07-03-a-las-21-12-25.png)
 
-    Films:
-    ![Alt text](https://i.postimg.cc/c43K0FnW/Captura-de-pantalla-2021-07-03-a-las-21-12-32.png)
+Films:
+    ![films](https://i.postimg.cc/c43K0FnW/Captura-de-pantalla-2021-07-03-a-las-21-12-32.png)
 
-    Cart:
-    ![Alt text](https://i.postimg.cc/P5m8zSXy/Captura-de-pantalla-2021-07-03-a-las-21-11-59.png)
+Cart:
+    ![cart](https://i.postimg.cc/P5m8zSXy/Captura-de-pantalla-2021-07-03-a-las-21-11-59.png)
 
-    Favorites:
-    ![Alt text](https://i.postimg.cc/QtM9DspY/Captura-de-pantalla-2021-07-03-a-las-21-12-14.png)
+Favorites:
+    ![favorites](https://i.postimg.cc/QtM9DspY/Captura-de-pantalla-2021-07-03-a-las-21-12-14.png)
 
-    User information:
-    ![Alt text](https://i.postimg.cc/BnWKKr0t/Captura-de-pantalla-2021-07-03-a-las-21-12-05.png)
+User information:
+    ![userData](https://i.postimg.cc/BnWKKr0t/Captura-de-pantalla-2021-07-03-a-las-21-12-05.png)
