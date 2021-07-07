@@ -6,7 +6,11 @@
 
 ## Description:
 
-    That project is a ecommerce shop to sell and buy analogic photography material, like cameras, lenses and films. You must to register at the beginning of the app or if you have an account you can login it to navigate inside.
+    That project is a ecommerce shop to sell and buy analogic photography material, like cameras, lenses and films. You must to register at the beginning of the app or if you have an account you can login it to navigate inside. It has a backend connected with Postamn and Mongo database, and a frontend part.
+
+    The backend is build with mongoose, express, nodemon, node, jest and cors libraries.
+    The frontend is build with react, redux, router-dom, axios and thunk libraries, and for the styles i applied SASS and BEM.
+    Everything is configured with eslint and tested with jest, to get a high quality code and apply SOLID principles.
 
 ## How to run it:
 
